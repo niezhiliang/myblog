@@ -1,0 +1,35 @@
+server:
+    port: 8080
+    context-path: /
+
+spring:
+    datasource:
+         type: com.alibaba.druid.pool.DruidDataSource
+         #-- Druid config
+         initialSize: 5
+         minIdle: 5
+         maxActive: 20
+         maxWait: 60000
+         timeBetweenEvicationRunsMillis: 60000
+         minEvicationRunsMillis: 3000
+         validationQuery: SELECT 1 FROM DUAL
+         helperDialect: mysql
+         testWhileIdle: true
+         testOnBorrow: false
+         testOnReturn: false
+         filters: stat, wall,log4j
+         #-- end config
+         driver-class-name: com.mysql.jdbc.Driver
+         url: jdbc:mysql://127.0.0.1:3306/suyu?useUnicode=true&characterEncoding=utf8
+         username: root
+         password: root
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath*:mappers/*Mapper.xml
+
+suyu:
+  data:
+    name: suyu
+    password: 123456
