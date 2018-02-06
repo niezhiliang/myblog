@@ -28,6 +28,8 @@
 </template>
 
 <script >
+  import request from '@/components/request.js'
+
   export default {
     data () {
       return {
@@ -41,10 +43,11 @@
     },
     methods: {
       onSubmit () {
-        var result = this.$store.dispatch('login', {
+        let result = this.$store.dispatch('login', {
           phone: this.user.account,
           password: this.user.password
         })
+        console.log(result.message)
         if (result) {
           this.$router.push('/index')
         }

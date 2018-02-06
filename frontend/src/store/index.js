@@ -21,12 +21,12 @@ export default new Vuex.Store({
       context.commit('changeHead', { index: payload.index })
     },
     login (context, user) {
-      return request.post('login/index', user).then((res) => {
+      return request.post('unchk/login/index', user).then((res) => {
         if (res.data.code === 20) {
           context.commit('login', { islogin: true })
-          return true
+          return res.data
         } else {
-          return false
+          return res.data
         }
       })
     }

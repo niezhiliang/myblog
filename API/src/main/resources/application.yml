@@ -20,9 +20,9 @@ spring:
          filters: stat, wall,log4j
          #-- end config
          driver-class-name: com.mysql.jdbc.Driver
-         url: jdbc:mysql://127.0.0.1:3306/suyu?useUnicode=true&characterEncoding=utf8
+         url: jdbc:mysql://www.niezhiliang.com:3306/suyu?useUnicode=true&characterEncoding=utf8
          username: root
-         password: root
+         password: nzl199595
 
 mybatis:
   configuration:
@@ -33,3 +33,10 @@ suyu:
   data:
     name: suyu
     password: 123456
+#阿里oss配置
+  aliyun:
+    oss:
+      accessKeyId: xxxxxx
+      accessKeySecret: xxxxx
+      endpoint: "http://oss-cn-qingdao.aliyuncs.com"
+      Bucket: "huluwa-pdf"

@@ -5,4 +5,6 @@ public class InfoCode {
     public static final Integer SUCCESS = 20;
 
     public static final Integer ERROR = 50;
+
+    public static final Integer UNTOKEN = 30;
 }

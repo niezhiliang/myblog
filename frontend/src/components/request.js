@@ -1,5 +1,6 @@
 import axios from 'axios'
 import ele from 'element-ui'
+import vc from 'vue-cookie'
 // 添加请求拦截器
 axios.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么
@@ -19,17 +20,19 @@ axios.interceptors.response.use(function (response) {
 })
 
 export default {
+
   post (url, data) {
+    let token = vc.get('userInfo')? JSON.parse(vc.get('userInfo')).token:''
     return axios({
       method: 'post',
-      baseURL: 'http://localhost:8087',
+      baseURL: 'http://localhost:8080',
       url,
       data: data,
       timeout: 10000,
       headers: {
         'X-Requested-With': 'XMLHttpRequest',
         'Content-Type': 'application/json; charset=UTF-8',
-        'token': '123'
+        'Authorization': 'Bearer ' + token
       }
     })
       .then(

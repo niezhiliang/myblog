@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.suyu.domain.User;
 import com.suyu.entity.InfoCode;
 import com.suyu.entity.ResInfo;
+import com.suyu.jwt.jwt.util.JwtUtil;
 import com.suyu.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -11,9 +12,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/login")
+@RequestMapping(value = "unchk/login")
 public class LoginController {
-
+    @Autowired
+    private JwtUtil jwtUtil;
     @Autowired
     private UserService userService;
 
@@ -24,8 +26,11 @@ public class LoginController {
             resInfo.setMessage("用户名不能为空");
             resInfo.setCode(InfoCode.ERROR);
         }
-        user = userService.selectByLogin(user);
+        //user = userService.selectByLogin(user);
        if (user != null) {
+            user.setId(110l);
+            String token = jwtUtil.generateToken(user);
+            user.setToken(token);
             resInfo.setCode(InfoCode.SUCCESS);
             resInfo.setContent(user);
             resInfo.setMessage("登录成功");
