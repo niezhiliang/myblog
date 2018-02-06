@@ -112,4 +112,12 @@ public class User {
     public void setWechart(String wechart) {
         this.wechart = wechart == null ? null : wechart.trim();
     }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public User() {
+    }
 }

@@ -17,6 +17,9 @@
     <modules>
         <module>model</module>
         <module>websocket</module>
+        <module>alioss</module>
+        <module>upload</module>
+        <module>jwt</module>
     </modules>
 
 

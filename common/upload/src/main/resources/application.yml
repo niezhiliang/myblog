@@ -1,0 +1,11 @@
+#阿里oss配置
+suyu:
+  aliyun:
+    oss:
+      accessKeyId: 
+      accessKeySecret: 
+      endpoint: "http://oss-cn-qingdao.aliyuncs.com"
+      Bucket: "huluwa-pdf"
+server:
+  port: 9080
+  context-path: /api
