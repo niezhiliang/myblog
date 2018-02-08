@@ -1,246 +1,210 @@
 <template>
-    <div>
+  <div>
     <vheader :activeIndex="1"></vheader>
     <div class="center">
       <!-- 页面左侧模块-->
       <el-container>
-        <el-aside width="260px">
-          <div style="padding-bottom: 20px;">
-            <el-tag type="success">
-              <span style="font-weight:bold;">个人资料</span>
-            </el-tag>
-          </div>
-          <div class="my-info">
-            <el-tag id="headimg">
-              <img id="myimg" :src="lefttop.user.headimage"/>
-            </el-tag>
-            <div style="margin-top: 10px;">
-                <span style="text-align: center;">{{ lefttop.user.username }}</span>
+        <el-aside width="860px">
+          <template>
+            <el-carousel indicator-position="outside">
+              <el-carousel-item v-for="item in 4" :key="item">
+                <h3>{{ item }}</h3>
+              </el-carousel-item>
+            </el-carousel>
+          </template>
+          <!-- 阅读排行榜 -->
+          <el-card class="box-card add-padding">
+            <div slot="header" class="clearfix">
+              <span>热门排行</span>
             </div>
-          </div>
-          <div class="my-info" style="text-align: left">
-            <div class="art-data">
-              <label>文章：</label><span>{{ lefttop.blogcount }}</span>
+            <div v-for="o in 4" :key="o" class="text item" style="cursor:pointer">
+              <i>*</i>
+              <a href="#"><span>{{'Java多线程运行原理深度挖掘 ' + o }}</span></a>
+              <div style="float: right;margin-right: 30px">
+                <b>阅读:</b><i>520</i>
+              </div>
             </div>
-            <div class="art-data">
-               <label>访问：</label><span>{{ lefttop.visitcount }}</span>
+          </el-card>
+          <!-- 文章简介卡片 -->
+          <el-card class="box-card card-border add-padding">
+            <div style="margin-top: -10px">
+              <span class="qing-category">技术</span>
+              <i class="el-icon-caret-right icon-size" ></i>
+              <a>Java多线程运行原理深度挖掘</a>
             </div>
-            <div class="art-data">
-               <label>评论：</label><span>{{ lefttop.comments }}</span>
+            <div class="qing-list-hint">
+              <span><i class="am-icon-user qing-color-author" title="作者"></i> 木槿心 &nbsp;</span>
+              <span><i class="el-icon-view" title="阅读"></i> 阅读(58)</span>
+              <span><i class="am-icon-comments-o qing-color-comment" title="评论"></i> 评论(1)</span>
             </div>
-          </div>
-          <div class="center-spance"></div>
-          <div style="padding-bottom: 20px;">
-            <el-tag type="success">
-              <span style="font-weight:bold;">文章搜索</span>
-            </el-tag>
-          </div>
-          <div id="select-art">
-              <el-input placeholder="请输入内容" v-model="select.search" class="input-with-select">
-                <el-button slot="append" icon="el-icon-search"></el-button>
-              </el-input>
-          </div>
-          <div class="center-spance"></div>
-          <div>
-            <el-tag type="success">
-              <span style="font-weight:bold;">文章分类</span>
-            </el-tag>
-          </div>
-          <div class="my-info" style="text-align: left;border: none">
-            <div  v-for="(tag, index) in tags" @click="selectkind(tag.lid)" :tid="tag.lid" @mouseover="changestyle()">
-              <el-tag class="tip-kind"
-                      :key="tag.count"
-                      :type="tarcolor[index]"
-                      :disable-transitions="true"
-              >
-                {{tag.labelname}}
-                <div style="float: right;margin-bottom: -10px">{{ tag.count }}</div>
-              </el-tag>
-            </div>
-          </div>
-          <div class="center-spance"></div>
-          <div>
-            <el-tag type="success">
-              <span style="font-weight:bold;">阅读排行</span>
-            </el-tag>
-          </div>
-          <div class="my-info" style="text-align: left;border: none;padding-right: 0px;">
-            <div class="art-data" v-for="blog in blogord">
-              <a href="#">{{blog.title}}</a><span class="top-read">(<span>{{blog.readcount}}</span>)</span>
-            </div>
-          </div>
-          <div class="center-spance" style="background-color: #f4f4f4;height: 200px;"></div>
+            <p class="qing-list-content">JavaScript学习总结，undefined是全局对象（window）的一个特殊属性，其值是未定义的(当尝试读取不存在的对象属性时会返回 undefined)</p>
+            <div class="qing-list-foot">  <i class="am-icon-tags"></i>
+              <span class="am-radius">#前端</span>
+              <span class="am-radius">#JS</span>
+              <a href="/B20170905221529.html" class="qing-read-more">阅读全文&gt;&gt;</a> </div>
+          </el-card>
+          <!-- 分页 -->
+          <el-card  id="pagehelper" class="box-card" style="padding: 0px 0px">
+            <el-pagination
+              background
+              layout="prev, pager, next"
+              prev-text="上一页"
+              next-text="下一页"
+              :total="60" style="margin-top: -13px">
+            </el-pagination>
+          </el-card>
+
         </el-aside>
         <!-- 模块之间的间隔-->
-        <div style="background-color: #f4f4f4;">
-             <el-aside width="20px"></el-aside>
-        </div>
+        <!--<div style="background-color: #f4f4f4;">-->
+          <!--<el-aside width="20px"></el-aside>-->
+        <!--</div>-->
         <!-- 页面中间模块-->
         <el-main>
-           <div class="top-main">
-
-           </div>
-          <div class="blog-art-box" v-for="b in blogs">
-            <div class="blog-title">
-              <div class="tip-blog">{{type[b.type]}}</div>
-              <router-link :to="{ name: 'blog' }">{{b.title}}</router-link>
-            </div>
-            <div class="blog-introduction"><span class="intro-font">{{b.resume}}</span></div>
-            <div class="blog-detail">
-               <span class="blog-data-art">
-                 <i class="el-icon-edit-outline" style="font-size: 15px"></i>
-                 <label>评论</label><span>(</span><span>{{b.comment}}</span><span>)</span>
-              </span>
-              <span class="blog-data-art">
-                <i class="el-icon-view" style="font-size: 15px;"></i>
-                 <label>阅读</label><span>(</span><span>{{b.readcount}}</span><span>)</span>
-              </span>
-
-              <span class="blog-data-art">
-                  <i class="el-icon-time" style="font-size: 15px;"></i>
-                <span>{{ b.creattime | time}}</span>
-              </span>
-            </div>
-          </div>
-         <!--分页-->
-          <div class="block">
-            <el-pagination
-              layout="total, prev, pager, next"
-              :total="count"
-              :page-sizes="[2,5,6]"
-              :page-size="select.pagesize"
-              :current-page.sync="select.pageno"
-              @current-change="changePage()"
-              @size-change="changePage()"
-            >
-            </el-pagination>
+          <div class="top-main">
+            <!-- 标签 -->
+            <el-card class="box-card" style="padding:10px 15px ">
+              <div slot="header" class="clearfix">
+                <span>文章分类</span>
+              </div>
+              <div v-for="o in 4" :key="o" style="cursor:pointer">
+                <div style="display: block">{{ 标签 +o}}</div>
+              </div>
+            </el-card>
+            <!--最新文章-->
+            <el-card class="box-card" style="padding:10px 15px ">
+              <div slot="header" class="clearfix">
+                <span>最新文章</span>
+              </div>
+              <div v-for="o in 4" :key="o" style="cursor:pointer">
+                <div style="display: block">{{ 标签 +o}}</div>
+              </div>
+            </el-card>
+            <!--标签云-->
+            <el-card class="box-card" style="padding:10px 15px ">
+              <div slot="header" class="clearfix">
+                <span>标签云</span>
+              </div>
+              <div v-for="o in 4" :key="o" style="cursor:pointer">
+                <div style="display: block">{{ 标签 +o}}</div>
+              </div>
+            </el-card>
+            <!--联系我-->
+            <el-card class="box-card" style="padding:10px 15px ">
+              <div slot="header" class="clearfix">
+                <span>联系我</span>
+              </div>
+              <div v-for="o in 4" :key="o" style="cursor:pointer">
+                <div style="display: block">{{ 标签 +o}}</div>
+              </div>
+            </el-card>
+            <!--友情链接-->
+            <el-card class="box-card" style="padding:10px 15px ">
+              <div slot="header" class="clearfix">
+                <span>友情链接</span>
+              </div>
+              <div v-for="o in 4" :key="o" style="cursor:pointer">
+                <div style="display: block">{{ 标签 +o}}</div>
+              </div>
+            </el-card>
           </div>
         </el-main>
       </el-container>
     </div>
-    </div>
+  </div>
 </template>
 
 <script type="text/ecmascript-6">
-    import vheader from '@/pages/head'
-    import request from '@/components/request'
-    export default {
-      name: 'Test',
-      data () {
-        return {
-          tags: [],
-          type: {
-            0: '新',
-            1: '热'
+  import vheader from '@/pages/head'
+  import request from '@/components/request'
+  export default {
+    name: 'Test',
+    data () {
+      return {
+        lefttop: {
+          blogcount: 0,
+          comments: 0,
+          user: {
+            headimage: '',
+            id: '',
+            username: ''
           },
-          select: {
-            search: null,
-            pageno: 1,
-            pagesize: 5,
-            lid: null
-          },
-          lefttop: {
-            blogcount: 0,
-            comments: 0,
-            user: {
-              headimage: '',
-              id: '',
-              username: ''
-            },
-            visitcount: ''
-          },
-          blogs: [],
-          blogord: [],
-          currpage: 1,
-          count: 1,
-          pages: 1,
-          islogin: false,
-          tarcolor: {
-            0: 'success',
-            1: 'info',
-            2: 'warning',
-            3: 'danger',
-            4: '',
-            5: 'success',
-            6: 'info',
-            7: 'warning',
-            8: 'danger',
-            9: '',
-            10: 'success',
-            11: 'info',
-            12: 'warning',
-            13: 'danger',
-            14: ''
+          visitcount: ''
+        },
+        blogs: [],
+        blogord: [],
+        currpage: 1,
+        count: 1,
+        pages: 1
+      }
+    },
+    created () {
+      this.islogin = this.$store.state.islogin
+      if (this.islogin === false) {
+        this.$router.push('/login')
+      }
+      this.open()
+      this.initLab()
+      this.initBlog()
+      this.initOrder()
+      this.initLeftTop()
+    },
+    mounted () {
+    },
+    methods: {
+      open () {
+        this.$message('登录成功')
+      },
+      initLab () {
+        request.post('/label/getlabelsandcount').then((res) => {
+          if (res.data.code === 20) {
+            console.log(res.data.content)
+            this.tags = res.data.content
           }
-        }
+        })
       },
-      created () {
-        this.islogin = this.$store.state.islogin
-        if (this.islogin === false) {
-          this.$router.push('/login')
-        }
-        this.open()
-        this.initLab()
+      initBlog () {
+        request.post('/blog/list', this.select).then((res) => {
+          if (res.data.code === 20) {
+            this.blogs = res.data.content.blogs
+            this.currpage = res.data.content.currpage
+            this.pages = res.data.content.pages
+            this.count = res.data.content.count
+          }
+        })
+      },
+      initOrder () {
+        request.post('/blog/readorder').then((res) => {
+          if (res.data.code === 20) {
+            console.log(res.data.content)
+            this.blogord = res.data.content
+          }
+        })
+      },
+      changePage () {
+        console.log(this.select.pageno)
+        console.log(this.select.pagesize)
         this.initBlog()
-        this.initOrder()
-        this.initLeftTop()
       },
-      mounted () {
+      initLeftTop () {
+        request.post('/user/blogleft', {id: 1}).then((res) => {
+          if (res.data.code === 20) {
+            console.log(res.data.content)
+            this.lefttop = res.data.content
+          }
+        })
       },
-      methods: {
-        open () {
-          this.$message('登录成功')
-        },
-        initLab () {
-          request.post('/label/getlabelsandcount').then((res) => {
-            if (res.data.code === 20) {
-              console.log(res.data.content)
-              this.tags = res.data.content
-            }
-          })
-        },
-        initBlog () {
-          request.post('/blog/list', this.select).then((res) => {
-            if (res.data.code === 20) {
-              this.blogs = res.data.content.blogs
-              this.currpage = res.data.content.currpage
-              this.pages = res.data.content.pages
-              this.count = res.data.content.count
-            }
-          })
-        },
-        initOrder () {
-          request.post('/blog/readorder').then((res) => {
-            if (res.data.code === 20) {
-              console.log(res.data.content)
-              this.blogord = res.data.content
-            }
-          })
-        },
-        changePage () {
-          console.log(this.select.pageno)
-          console.log(this.select.pagesize)
-          this.initBlog()
-        },
-        initLeftTop () {
-          request.post('/user/blogleft', {id: 1}).then((res) => {
-            if (res.data.code === 20) {
-              console.log(res.data.content)
-              this.lefttop = res.data.content
-            }
-          })
-        },
-        selectkind (lid) {
-          this.select.pageno = 1
-          this.select.lid = lid
-          this.initBlog()
-        },
-        changestyle () {
-          console.log(110)
-        }
+      selectkind (lid) {
+        this.select.pageno = 1
+        this.select.lid = lid
+        this.initBlog()
       },
-      components: { vheader }
-    }
+      changestyle () {
+        console.log(110)
+      }
+    },
+    components: { vheader }
+  }
 </script>
 
 <style>
@@ -248,57 +212,16 @@
     color: red;
   }
   .el-aside{
-     width: 15%;
+    width: 15%;
+  }
+  body {
+    background-color: #f2f2f2;
   }
   .center {
     margin-left: 15%;
     margin-right:15%;
     margin-top: 20px;
     background-color: #fff;
-  }
-  .el-tag--success{
-    width: 100%;
-    border-radius: 0px;
-  }
-  #headimg {
-    width: 100%;
-    height: 150px;
-    background-color: #fff;
-    border: none;
-  }
-  #myimg {
-    width: 150px;
-    height: 150px;
-    border: none;
-  }
-  .my-info {
-    text-align: center;
-    padding-bottom: 10px;
-    padding-top: 10px;
-    border-bottom: dashed 1px #ccc;
-    margin-bottom: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
-  }
-  .art-data{
-    font-size: 12px;
-    padding-bottom: 5px;
-    padding-top: 5px;
-  }
-.top-read{
-  float: right;
-}
-  .center-spance {
-    width: 100%;
-    height: 15px;
-    background-color:#f4f4f4;
-  }
-  #select-art {
-    width: 96%;
-    text-align: center;
-    padding-left: 2%;
-    padding-right: 2%;
-    padding-bottom: 20px;
   }
   .top-main {
     width: 96%;
@@ -325,43 +248,131 @@
     font-size: 14px;
     color: #666;
   }
-  a{
-    text-decoration: none;
-    color: red;
-  }
-  .tip-blog{
-    width: 20px;
-    height: 20px;
-    border-radius: 7px;
-    background-color: #67c23a;
-    font-size: 12px;
-    text-align: center;
-    float: left;
-    color:white;
-    padding-top: 2px;
-    margin-right: 10px;
-  }
-  .blog-detail{
-    width: 100%;
-    height: 30px;
-    margin-top: 40px;
-  }
-  .blog-data-art{
-    float: right;
-    margin-right: 30px;
-    font-size: 12px;
-  }
-  .block{
-    margin-top: 30px;
-    float: right;
-  }
-  .tip-kind {
-    width: 100%;
-    text-align: left;
-    margin-top: 2px;
-    cursor: pointer;
-  }
+  a:hover{color: #67c23a;}
+
   .el-pager li.active {
     color: #67c23a;
+  }
+
+  .el-carousel__item h3 {
+    color: #475669;
+    font-size: 18px;
+    opacity: 0.75;
+    line-height: 300px;
+    margin: 0;
+  }
+
+  .el-carousel__item:nth-child(2n) {
+    background-color: #99a9bf;
+  }
+
+  .el-carousel__item:nth-child(2n+1) {
+    background-color: #d3dce6;
+  }
+  .text {
+    font-size: 13px;
+  }
+
+  .item {
+    margin-bottom: 8px;
+  }
+
+  .clearfix:before,
+  .clearfix:after {
+    display: table;
+    content: "";
+  }
+  .clearfix:after {
+    clear: both
+  }
+
+  .box-card {
+    background: #FFF;
+    padding: 0 2rem;
+    margin-top: 16px;
+  }
+  .el-aside {
+    padding: 20px 20px;
+  }
+  .el-card__header {
+    padding: 18px 20px;
+    border-bottom: 1px solid #67c23a;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+  .card-border {
+    border-bottom: none;
+  }
+  .el-pagination {
+    white-space: nowrap;
+    padding: 2px 1px;
+    color: white;
+    font-weight: 700;
+    text-align: center;
+  }
+  .el-pagination.is-background .el-pager li.active {
+    background-color: #67c23a;
+    color: #fff;
+  }
+  .el-main {
+    background-color: #f2f2f2;
+    padding: 0px 0px;
+    height: 1200px;
+  }
+  .el-aside {
+    background-color: #f2f2f2;
+    height: 1200px;
+  }
+
+  #pagehelper {
+    height: 56px;
+    padding: 8px;
+  }
+  .add-padding {
+    padding: 10px 15px;
+  }
+  .el-card__body {
+    padding: 10px 10px;
+  }
+  .el-card__header {
+    padding: 10px;
+  }
+  .qing-category{
+    color: #fff;
+    background-color: #1abc9c;
+    padding: 3px 6px;
+    font-size: 10px;
+    position: relative;
+    top: -2px;
+    margin-right: 5px;
+  }
+  .qing-list-hint{
+    padding-top: 0.2rem;
+    font-size: 10px;
+  }
+  .qing-list-content {
+    padding: 0.2rem 0;
+    text-indent: 2em;
+    font-size: 14px;
+    line-height: 22px;
+    color: #777;
+  }
+  .qing-list-foot {
+    font-size: 8px;
+    text-align: left;
+  }
+  .am-radius {
+    border-radius: 2px;
+  }
+  .qing-list-foot a {
+    margin: 0.15rem 0.15rem;
+    font-size: 10px;
+    float: right;
+    color: #009688;
+  }
+  .icon-size{
+    color:rgb(26, 188, 156);
+    margin-left: -18px;
+    font-size: 20px
   }
 </style>
