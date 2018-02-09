@@ -4,11 +4,10 @@
     <div class="center">
       <!-- 页面左侧模块-->
       <el-container>
-        <el-aside width="860px">
+        <el-aside width="860px" style="height: 100%">
           <template>
             <el-carousel indicator-position="outside">
               <el-carousel-item v-for="item in 4" :key="item">
-                <h3>{{ item }}</h3>
               </el-carousel-item>
             </el-carousel>
           </template>
@@ -18,7 +17,7 @@
               <span>热门排行</span>
             </div>
             <div v-for="o in 4" :key="o" class="text item" style="cursor:pointer">
-              <i>*</i>
+              <Icon type="ios-infinite-outline"></Icon>
               <a href="#"><span>{{'Java多线程运行原理深度挖掘 ' + o }}</span></a>
               <div style="float: right;margin-right: 30px">
                 <b>阅读:</b><i>520</i>
@@ -26,33 +25,33 @@
             </div>
           </el-card>
           <!-- 文章简介卡片 -->
-          <el-card class="box-card card-border add-padding">
+          <el-card class="box-card card-border" style="margin-top: 10px;padding-top: 10px" v-for="i in 5">
             <div style="margin-top: -10px">
               <span class="qing-category">技术</span>
               <i class="el-icon-caret-right icon-size" ></i>
-              <a>Java多线程运行原理深度挖掘</a>
+              <a href="#" style="color: cornflowerblue;font-size: 16px">Java多线程运行原理深度挖掘</a>
             </div>
             <div class="qing-list-hint">
-              <span><i class="am-icon-user qing-color-author" title="作者"></i> 木槿心 &nbsp;</span>
-              <span><i class="el-icon-view" title="阅读"></i> 阅读(58)</span>
-              <span><i class="am-icon-comments-o qing-color-comment" title="评论"></i> 评论(1)</span>
+              <span><Icon type="person" style="font-size: 13px;color:#01AAED"></Icon> 木槿心 </span>
+              <span><Icon type="clock" style="color: darkgoldenrod;"></Icon>&nbsp; 2018-02-09&nbsp;</span>
+              <span><Icon type="ios-eye" style="color:#01AAED;font-size: 15px"></Icon>&nbsp;阅读(58)&nbsp;</span>
+              <span><Icon type="ios-chatboxes" style="font-size: 13px;color:#67c23a;"></Icon>&nbsp;评论(1)</span>
             </div>
             <p class="qing-list-content">JavaScript学习总结，undefined是全局对象（window）的一个特殊属性，其值是未定义的(当尝试读取不存在的对象属性时会返回 undefined)</p>
-            <div class="qing-list-foot">  <i class="am-icon-tags"></i>
+            <div class="qing-list-foot">
+              <Icon type="ios-pricetags" style="margin-right: 5px"></Icon>
               <span class="am-radius">#前端</span>
               <span class="am-radius">#JS</span>
               <a href="/B20170905221529.html" class="qing-read-more">阅读全文&gt;&gt;</a> </div>
           </el-card>
           <!-- 分页 -->
-          <el-card  id="pagehelper" class="box-card" style="padding: 0px 0px">
             <el-pagination
               background
               layout="prev, pager, next"
               prev-text="上一页"
               next-text="下一页"
-              :total="60" style="margin-top: -13px">
+              :total="60" style="margin-top: 10px;background-color:#fff;padding: 10px">
             </el-pagination>
-          </el-card>
 
         </el-aside>
         <!-- 模块之间的间隔-->
@@ -67,8 +66,11 @@
               <div slot="header" class="clearfix">
                 <span>文章分类</span>
               </div>
-              <div v-for="o in 4" :key="o" style="cursor:pointer">
-                <div style="display: block">{{ 标签 +o}}</div>
+              <div v-for="o in 5" :key="o" style="cursor:pointer">
+                <Tag checkable color="blue">标签一</Tag>
+                <Tag checkable color="green">标签二</Tag>
+                <Tag checkable color="red">标签三</Tag>
+                <Tag checkable color="yellow">标签四</Tag>
               </div>
             </el-card>
             <!--最新文章-->
@@ -77,7 +79,9 @@
                 <span>最新文章</span>
               </div>
               <div v-for="o in 4" :key="o" style="cursor:pointer">
-                <div style="display: block">{{ 标签 +o}}</div>
+                <div style="margin-top: 8px">
+                  <a class="qing-item-link" href="/B20180124164708.html">RocketMQ4.2在纯IPv6环境下使用的问题</a>
+                </div>
               </div>
             </el-card>
             <!--标签云-->
@@ -94,8 +98,9 @@
               <div slot="header" class="clearfix">
                 <span>联系我</span>
               </div>
-              <div v-for="o in 4" :key="o" style="cursor:pointer">
-                <div style="display: block">{{ 标签 +o}}</div>
+              <div class="qing-panel-body">
+                <p class="am-text-left">邮箱：nzlsgg@163.com</p>
+                <p class="am-text-left">QQ交流群：1234567890</p>
               </div>
             </el-card>
             <!--友情链接-->
@@ -104,7 +109,9 @@
                 <span>友情链接</span>
               </div>
               <div v-for="o in 4" :key="o" style="cursor:pointer">
-                <div style="display: block">{{ 标签 +o}}</div>
+                <div style="margin-top: 8px">
+                  <a class="qing-item-link" href="/B20180124164708.html">我的GitHub</a>
+                </div>
               </div>
             </el-card>
           </div>
@@ -135,7 +142,8 @@
         blogord: [],
         currpage: 1,
         count: 1,
-        pages: 1
+        pages: 1,
+        value2: 0
       }
     },
     created () {
@@ -317,7 +325,6 @@
   .el-main {
     background-color: #f2f2f2;
     padding: 0px 0px;
-    height: 1200px;
   }
   .el-aside {
     background-color: #f2f2f2;
