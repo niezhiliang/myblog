@@ -1,6 +1,6 @@
 package com.suyu.entity;
 
-public class ResInfo {
+public class RestInfo {
 
     private Integer code;
 

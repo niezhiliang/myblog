@@ -1,17 +1,9 @@
 package com.suyu.domain;
 
-public class UserBlogKey {
-    private Long uid;
-
+public class LabelBlog {
     private Long bid;
 
-    public Long getUid() {
-        return uid;
-    }
-
-    public void setUid(Long uid) {
-        this.uid = uid;
-    }
+    private Long lid;
 
     public Long getBid() {
         return bid;
@@ -19,5 +11,13 @@ public class UserBlogKey {
 
     public void setBid(Long bid) {
         this.bid = bid;
+    }
+
+    public Long getLid() {
+        return lid;
+    }
+
+    public void setLid(Long lid) {
+        this.lid = lid;
     }
 }

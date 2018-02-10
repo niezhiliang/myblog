@@ -4,9 +4,7 @@ import com.suyu.domain.UserBrowse;
 import com.suyu.domain.UserBrowseExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public interface UserBrowseMapper {
     long countByExample(UserBrowseExample example);
 
@@ -29,6 +27,4 @@ public interface UserBrowseMapper {
     int updateByPrimaryKeySelective(UserBrowse record);
 
     int updateByPrimaryKey(UserBrowse record);
-
-    int selectAllCount();
 }

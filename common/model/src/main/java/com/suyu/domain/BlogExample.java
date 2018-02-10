@@ -305,63 +305,63 @@ public class BlogExample {
             return (Criteria) this;
         }
 
-        public Criteria andLidIsNull() {
-            addCriterion("lid is null");
+        public Criteria andTidIsNull() {
+            addCriterion("tid is null");
             return (Criteria) this;
         }
 
-        public Criteria andLidIsNotNull() {
-            addCriterion("lid is not null");
+        public Criteria andTidIsNotNull() {
+            addCriterion("tid is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLidEqualTo(Byte value) {
-            addCriterion("lid =", value, "lid");
+        public Criteria andTidEqualTo(Byte value) {
+            addCriterion("tid =", value, "tid");
             return (Criteria) this;
         }
 
-        public Criteria andLidNotEqualTo(Byte value) {
-            addCriterion("lid <>", value, "lid");
+        public Criteria andTidNotEqualTo(Byte value) {
+            addCriterion("tid <>", value, "tid");
             return (Criteria) this;
         }
 
-        public Criteria andLidGreaterThan(Byte value) {
-            addCriterion("lid >", value, "lid");
+        public Criteria andTidGreaterThan(Byte value) {
+            addCriterion("tid >", value, "tid");
             return (Criteria) this;
         }
 
-        public Criteria andLidGreaterThanOrEqualTo(Byte value) {
-            addCriterion("lid >=", value, "lid");
+        public Criteria andTidGreaterThanOrEqualTo(Byte value) {
+            addCriterion("tid >=", value, "tid");
             return (Criteria) this;
         }
 
-        public Criteria andLidLessThan(Byte value) {
-            addCriterion("lid <", value, "lid");
+        public Criteria andTidLessThan(Byte value) {
+            addCriterion("tid <", value, "tid");
             return (Criteria) this;
         }
 
-        public Criteria andLidLessThanOrEqualTo(Byte value) {
-            addCriterion("lid <=", value, "lid");
+        public Criteria andTidLessThanOrEqualTo(Byte value) {
+            addCriterion("tid <=", value, "tid");
             return (Criteria) this;
         }
 
-        public Criteria andLidIn(List<Byte> values) {
-            addCriterion("lid in", values, "lid");
+        public Criteria andTidIn(List<Byte> values) {
+            addCriterion("tid in", values, "tid");
             return (Criteria) this;
         }
 
-        public Criteria andLidNotIn(List<Byte> values) {
-            addCriterion("lid not in", values, "lid");
+        public Criteria andTidNotIn(List<Byte> values) {
+            addCriterion("tid not in", values, "tid");
             return (Criteria) this;
         }
 
-        public Criteria andLidBetween(Byte value1, Byte value2) {
-            addCriterion("lid between", value1, value2, "lid");
+        public Criteria andTidBetween(Byte value1, Byte value2) {
+            addCriterion("tid between", value1, value2, "tid");
             return (Criteria) this;
         }
 
-        public Criteria andLidNotBetween(Byte value1, Byte value2) {
-            addCriterion("lid not between", value1, value2, "lid");
+        public Criteria andTidNotBetween(Byte value1, Byte value2) {
+            addCriterion("tid not between", value1, value2, "tid");
             return (Criteria) this;
         }
 

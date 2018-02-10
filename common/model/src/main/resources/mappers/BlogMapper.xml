@@ -5,7 +5,7 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="resume" jdbcType="VARCHAR" property="resume" />
-    <result column="lid" jdbcType="TINYINT" property="lid" />
+    <result column="tid" jdbcType="TINYINT" property="tid" />
     <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
     <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
     <result column="readcount" jdbcType="INTEGER" property="readcount" />
@@ -73,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, resume, lid, createTime, updatetime, readcount, comment
+    id, title, resume, tid, createTime, updatetime, readcount, comment
   </sql>
   <sql id="Blob_Column_List">
     content
@@ -130,11 +130,11 @@
   </delete>
   <insert id="insert" parameterType="com.suyu.domain.Blog">
     insert into blog (id, title, resume, 
-      lid, createTime, updatetime, 
+      tid, createTime, updatetime, 
       readcount, comment, content
       )
     values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{resume,jdbcType=VARCHAR}, 
-      #{lid,jdbcType=TINYINT}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{tid,jdbcType=TINYINT}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
       #{readcount,jdbcType=INTEGER}, #{comment,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
       )
   </insert>
@@ -150,8 +150,8 @@
       <if test="resume != null">
         resume,
       </if>
-      <if test="lid != null">
-        lid,
+      <if test="tid != null">
+        tid,
       </if>
       <if test="createtime != null">
         createTime,
@@ -179,8 +179,8 @@
       <if test="resume != null">
         #{resume,jdbcType=VARCHAR},
       </if>
-      <if test="lid != null">
-        #{lid,jdbcType=TINYINT},
+      <if test="tid != null">
+        #{tid,jdbcType=TINYINT},
       </if>
       <if test="createtime != null">
         #{createtime,jdbcType=TIMESTAMP},
@@ -217,8 +217,8 @@
       <if test="record.resume != null">
         resume = #{record.resume,jdbcType=VARCHAR},
       </if>
-      <if test="record.lid != null">
-        lid = #{record.lid,jdbcType=TINYINT},
+      <if test="record.tid != null">
+        tid = #{record.tid,jdbcType=TINYINT},
       </if>
       <if test="record.createtime != null">
         createTime = #{record.createtime,jdbcType=TIMESTAMP},
@@ -245,7 +245,7 @@
     set id = #{record.id,jdbcType=BIGINT},
       title = #{record.title,jdbcType=VARCHAR},
       resume = #{record.resume,jdbcType=VARCHAR},
-      lid = #{record.lid,jdbcType=TINYINT},
+      tid = #{record.tid,jdbcType=TINYINT},
       createTime = #{record.createtime,jdbcType=TIMESTAMP},
       updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
       readcount = #{record.readcount,jdbcType=INTEGER},
@@ -260,7 +260,7 @@
     set id = #{record.id,jdbcType=BIGINT},
       title = #{record.title,jdbcType=VARCHAR},
       resume = #{record.resume,jdbcType=VARCHAR},
-      lid = #{record.lid,jdbcType=TINYINT},
+      tid = #{record.tid,jdbcType=TINYINT},
       createTime = #{record.createtime,jdbcType=TIMESTAMP},
       updatetime = #{record.updatetime,jdbcType=TIMESTAMP},
       readcount = #{record.readcount,jdbcType=INTEGER},
@@ -278,8 +278,8 @@
       <if test="resume != null">
         resume = #{resume,jdbcType=VARCHAR},
       </if>
-      <if test="lid != null">
-        lid = #{lid,jdbcType=TINYINT},
+      <if test="tid != null">
+        tid = #{tid,jdbcType=TINYINT},
       </if>
       <if test="createtime != null">
         createTime = #{createtime,jdbcType=TIMESTAMP},
@@ -303,7 +303,7 @@
     update blog
     set title = #{title,jdbcType=VARCHAR},
       resume = #{resume,jdbcType=VARCHAR},
-      lid = #{lid,jdbcType=TINYINT},
+      tid = #{tid,jdbcType=TINYINT},
       createTime = #{createtime,jdbcType=TIMESTAMP},
       updatetime = #{updatetime,jdbcType=TIMESTAMP},
       readcount = #{readcount,jdbcType=INTEGER},
@@ -315,47 +315,11 @@
     update blog
     set title = #{title,jdbcType=VARCHAR},
       resume = #{resume,jdbcType=VARCHAR},
-      lid = #{lid,jdbcType=TINYINT},
+      tid = #{tid,jdbcType=TINYINT},
       createTime = #{createtime,jdbcType=TIMESTAMP},
       updatetime = #{updatetime,jdbcType=TIMESTAMP},
       readcount = #{readcount,jdbcType=INTEGER},
       comment = #{comment,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectBlogList" parameterType="com.suyu.entity.BlogMain" resultType="com.suyu.entity.BlogList">
-      select b.id 'id',b.title 'title',b.resume 'resume',b.content 'content',
-          b.createTime 'creattime',
-          b.readcount 'readcount',b.`comment` 'comment',u.type 'type'
-           from blog b left join user_blog u on b.id = u.bid
-           where 1=1
-      <if test="search != null">
-        AND  b.title like  CONCAT('%',#{search},'%')
-        OR   b.content like  CONCAT('%',#{search},'%')
-        OR   b.resume like  CONCAT('%',#{search},'%')
-      </if>
-      <if test="lid != 0">
-        AND  lid = #{ lid }
-      </if>
-    ORDER BY b.createTime DESC
-    limit #{begin},#{pagesize}
-  </select>
-  <select id="selectBlogCount" parameterType="com.suyu.entity.BlogMain" resultType="java.lang.Integer">
-    select count(*)
-    from blog b left join user_blog u on b.id = u.bid
-    where 1=1
-    <if test="search != null">
-      AND  b.title like  CONCAT('%',#{search},'%')
-      OR   b.content like  CONCAT('%',#{search},'%')
-      OR   b.resume like  CONCAT('%',#{search},'%')
-    </if>
-    <if test="lid != 0">
-       AND  lid = #{ lid }
-    </if>
-  </select>
-  <select id="selectReadOrder" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List"/>
-    from blog order by readcount desc
-    limit 0,6
-  </select>
 </mapper>

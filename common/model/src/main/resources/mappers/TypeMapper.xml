@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.suyu.mapper.LabelMapper">
-  <resultMap id="BaseResultMap" type="com.suyu.domain.Label">
+<mapper namespace="com.suyu.mapper.TypeMapper">
+  <resultMap id="BaseResultMap" type="com.suyu.domain.Type">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="labelName" jdbcType="VARCHAR" property="labelname" />
-    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
-    <result column="state" jdbcType="TINYINT" property="state" />
+    <result column="blogType" jdbcType="VARCHAR" property="blogtype" />
+    <result column="isEnable" jdbcType="TINYINT" property="isenable" />
+    <result column="createAt" jdbcType="TIMESTAMP" property="createat" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,16 +66,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, labelName, createTime, updateTime, state
+    id, blogType, isEnable, createAt
   </sql>
-  <select id="selectByExample" parameterType="com.suyu.domain.LabelExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.suyu.domain.TypeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from label
+    from type
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -87,85 +86,76 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from label
+    from type
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from label
+    delete from type
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.suyu.domain.LabelExample">
-    delete from label
+  <delete id="deleteByExample" parameterType="com.suyu.domain.TypeExample">
+    delete from type
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.suyu.domain.Label">
-    insert into label (id, labelName, createTime, 
-      updateTime, state)
-    values (#{id,jdbcType=BIGINT}, #{labelname,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{updatetime,jdbcType=TIMESTAMP}, #{state,jdbcType=TINYINT})
+  <insert id="insert" parameterType="com.suyu.domain.Type">
+    insert into type (id, blogType, isEnable, 
+      createAt)
+    values (#{id,jdbcType=BIGINT}, #{blogtype,jdbcType=VARCHAR}, #{isenable,jdbcType=TINYINT}, 
+      #{createat,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.suyu.domain.Label">
-    insert into label
+  <insert id="insertSelective" parameterType="com.suyu.domain.Type">
+    insert into type
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="labelname != null">
-        labelName,
+      <if test="blogtype != null">
+        blogType,
       </if>
-      <if test="createtime != null">
-        createTime,
+      <if test="isenable != null">
+        isEnable,
       </if>
-      <if test="updatetime != null">
-        updateTime,
-      </if>
-      <if test="state != null">
-        state,
+      <if test="createat != null">
+        createAt,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="labelname != null">
-        #{labelname,jdbcType=VARCHAR},
+      <if test="blogtype != null">
+        #{blogtype,jdbcType=VARCHAR},
       </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
+      <if test="isenable != null">
+        #{isenable,jdbcType=TINYINT},
       </if>
-      <if test="updatetime != null">
-        #{updatetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="state != null">
-        #{state,jdbcType=TINYINT},
+      <if test="createat != null">
+        #{createat,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.suyu.domain.LabelExample" resultType="java.lang.Long">
-    select count(*) from label
+  <select id="countByExample" parameterType="com.suyu.domain.TypeExample" resultType="java.lang.Long">
+    select count(*) from type
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update label
+    update type
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.labelname != null">
-        labelName = #{record.labelname,jdbcType=VARCHAR},
+      <if test="record.blogtype != null">
+        blogType = #{record.blogtype,jdbcType=VARCHAR},
       </if>
-      <if test="record.createtime != null">
-        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      <if test="record.isenable != null">
+        isEnable = #{record.isenable,jdbcType=TINYINT},
       </if>
-      <if test="record.updatetime != null">
-        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="record.state != null">
-        state = #{record.state,jdbcType=TINYINT},
+      <if test="record.createat != null">
+        createAt = #{record.createat,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null">
@@ -173,40 +163,35 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update label
+    update type
     set id = #{record.id,jdbcType=BIGINT},
-      labelName = #{record.labelname,jdbcType=VARCHAR},
-      createTime = #{record.createtime,jdbcType=TIMESTAMP},
-      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
-      state = #{record.state,jdbcType=TINYINT}
+      blogType = #{record.blogtype,jdbcType=VARCHAR},
+      isEnable = #{record.isenable,jdbcType=TINYINT},
+      createAt = #{record.createat,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.suyu.domain.Label">
-    update label
+  <update id="updateByPrimaryKeySelective" parameterType="com.suyu.domain.Type">
+    update type
     <set>
-      <if test="labelname != null">
-        labelName = #{labelname,jdbcType=VARCHAR},
+      <if test="blogtype != null">
+        blogType = #{blogtype,jdbcType=VARCHAR},
       </if>
-      <if test="createtime != null">
-        createTime = #{createtime,jdbcType=TIMESTAMP},
+      <if test="isenable != null">
+        isEnable = #{isenable,jdbcType=TINYINT},
       </if>
-      <if test="updatetime != null">
-        updateTime = #{updatetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="state != null">
-        state = #{state,jdbcType=TINYINT},
+      <if test="createat != null">
+        createAt = #{createat,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.suyu.domain.Label">
-    update label
-    set labelName = #{labelname,jdbcType=VARCHAR},
-      createTime = #{createtime,jdbcType=TIMESTAMP},
-      updateTime = #{updatetime,jdbcType=TIMESTAMP},
-      state = #{state,jdbcType=TINYINT}
+  <update id="updateByPrimaryKey" parameterType="com.suyu.domain.Type">
+    update type
+    set blogType = #{blogtype,jdbcType=VARCHAR},
+      isEnable = #{isenable,jdbcType=TINYINT},
+      createAt = #{createat,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

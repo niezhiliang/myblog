@@ -304,9 +304,4 @@
       wechart = #{wechart,jdbcType=VARCHAR}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectByLogin" parameterType="com.suyu.domain.User" resultMap="BaseResultMap">
-    select
-    <include refid="Base_Column_List"/>
-    from USER  where phone = #{phone,jdbcType=VARCHAR} AND  password = #{password,jdbcType=VARCHAR} AND status = 1
-  </select>
 </mapper>

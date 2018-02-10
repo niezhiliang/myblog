@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.suyu.mapper.LabelMapper">
-  <resultMap id="BaseResultMap" type="com.suyu.domain.Label">
-    <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="labelName" jdbcType="VARCHAR" property="labelname" />
-    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
-    <result column="state" jdbcType="TINYINT" property="state" />
+<mapper namespace="com.suyu.mapper.NoticeMapper">
+  <resultMap id="BaseResultMap" type="com.suyu.domain.Notice">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="beginAt" jdbcType="TIMESTAMP" property="beginat" />
+    <result column="endAt" jdbcType="TIMESTAMP" property="endat" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,16 +67,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, labelName, createTime, updateTime, state
+    id, content, url, beginAt, endAt
   </sql>
-  <select id="selectByExample" parameterType="com.suyu.domain.LabelExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.suyu.domain.NoticeExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from label
+    from notice
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,88 +84,88 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from label
-    where id = #{id,jdbcType=BIGINT}
+    from notice
+    where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from label
-    where id = #{id,jdbcType=BIGINT}
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from notice
+    where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.suyu.domain.LabelExample">
-    delete from label
+  <delete id="deleteByExample" parameterType="com.suyu.domain.NoticeExample">
+    delete from notice
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.suyu.domain.Label">
-    insert into label (id, labelName, createTime, 
-      updateTime, state)
-    values (#{id,jdbcType=BIGINT}, #{labelname,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{updatetime,jdbcType=TIMESTAMP}, #{state,jdbcType=TINYINT})
+  <insert id="insert" parameterType="com.suyu.domain.Notice">
+    insert into notice (id, content, url, 
+      beginAt, endAt)
+    values (#{id,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{beginat,jdbcType=TIMESTAMP}, #{endat,jdbcType=TIMESTAMP})
   </insert>
-  <insert id="insertSelective" parameterType="com.suyu.domain.Label">
-    insert into label
+  <insert id="insertSelective" parameterType="com.suyu.domain.Notice">
+    insert into notice
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="labelname != null">
-        labelName,
+      <if test="content != null">
+        content,
       </if>
-      <if test="createtime != null">
-        createTime,
+      <if test="url != null">
+        url,
       </if>
-      <if test="updatetime != null">
-        updateTime,
+      <if test="beginat != null">
+        beginAt,
       </if>
-      <if test="state != null">
-        state,
+      <if test="endat != null">
+        endAt,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
-        #{id,jdbcType=BIGINT},
+        #{id,jdbcType=INTEGER},
       </if>
-      <if test="labelname != null">
-        #{labelname,jdbcType=VARCHAR},
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
       </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
       </if>
-      <if test="updatetime != null">
-        #{updatetime,jdbcType=TIMESTAMP},
+      <if test="beginat != null">
+        #{beginat,jdbcType=TIMESTAMP},
       </if>
-      <if test="state != null">
-        #{state,jdbcType=TINYINT},
+      <if test="endat != null">
+        #{endat,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.suyu.domain.LabelExample" resultType="java.lang.Long">
-    select count(*) from label
+  <select id="countByExample" parameterType="com.suyu.domain.NoticeExample" resultType="java.lang.Long">
+    select count(*) from notice
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update label
+    update notice
     <set>
       <if test="record.id != null">
-        id = #{record.id,jdbcType=BIGINT},
+        id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.labelname != null">
-        labelName = #{record.labelname,jdbcType=VARCHAR},
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=VARCHAR},
       </if>
-      <if test="record.createtime != null">
-        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      <if test="record.url != null">
+        url = #{record.url,jdbcType=VARCHAR},
       </if>
-      <if test="record.updatetime != null">
-        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      <if test="record.beginat != null">
+        beginAt = #{record.beginat,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.state != null">
-        state = #{record.state,jdbcType=TINYINT},
+      <if test="record.endat != null">
+        endAt = #{record.endat,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null">
@@ -173,40 +173,40 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update label
-    set id = #{record.id,jdbcType=BIGINT},
-      labelName = #{record.labelname,jdbcType=VARCHAR},
-      createTime = #{record.createtime,jdbcType=TIMESTAMP},
-      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
-      state = #{record.state,jdbcType=TINYINT}
+    update notice
+    set id = #{record.id,jdbcType=INTEGER},
+      content = #{record.content,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR},
+      beginAt = #{record.beginat,jdbcType=TIMESTAMP},
+      endAt = #{record.endat,jdbcType=TIMESTAMP}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.suyu.domain.Label">
-    update label
+  <update id="updateByPrimaryKeySelective" parameterType="com.suyu.domain.Notice">
+    update notice
     <set>
-      <if test="labelname != null">
-        labelName = #{labelname,jdbcType=VARCHAR},
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
       </if>
-      <if test="createtime != null">
-        createTime = #{createtime,jdbcType=TIMESTAMP},
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
       </if>
-      <if test="updatetime != null">
-        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      <if test="beginat != null">
+        beginAt = #{beginat,jdbcType=TIMESTAMP},
       </if>
-      <if test="state != null">
-        state = #{state,jdbcType=TINYINT},
+      <if test="endat != null">
+        endAt = #{endat,jdbcType=TIMESTAMP},
       </if>
     </set>
-    where id = #{id,jdbcType=BIGINT}
+    where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.suyu.domain.Label">
-    update label
-    set labelName = #{labelname,jdbcType=VARCHAR},
-      createTime = #{createtime,jdbcType=TIMESTAMP},
-      updateTime = #{updatetime,jdbcType=TIMESTAMP},
-      state = #{state,jdbcType=TINYINT}
-    where id = #{id,jdbcType=BIGINT}
+  <update id="updateByPrimaryKey" parameterType="com.suyu.domain.Notice">
+    update notice
+    set content = #{content,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      beginAt = #{beginat,jdbcType=TIMESTAMP},
+      endAt = #{endat,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

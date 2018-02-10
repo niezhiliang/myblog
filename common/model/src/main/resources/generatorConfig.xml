@@ -3,7 +3,7 @@
 <generatorConfiguration>
 
     <classPathEntry
-            location="C:\Users\Administrator.USER-20160809ZT\.m2\repository\mysql\mysql-connector-java\5.1.43/mysql-connector-java-5.1.43.jar"/>
+            location="/Users/suyu/.m2/repository/mysql/mysql-connector-java/5.1.43/mysql-connector-java-5.1.43.jar"/>
 
     <context id="common-model" targetRuntime="MyBatis3">
 
@@ -12,8 +12,8 @@
             <property name="suppressAllComments" value="true"/>
         </commentGenerator>
 
-        <jdbcConnection connectionURL="jdbc:mysql://127.0.0.1:3306/suyu"
-                        driverClass="com.mysql.jdbc.Driver" password="root" userId="root" />
+        <jdbcConnection connectionURL="jdbc:mysql://www.niezhiliang.com/suyu"
+                        driverClass="com.mysql.jdbc.Driver" password="nzl199595" userId="root" />
 
         <javaModelGenerator targetPackage="com.suyu.domain"
                             targetProject="src/main/java" >
@@ -31,6 +31,13 @@
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
+        <table tableName="blog" domainObjectName="Blog"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"
+        ></table>
         <table tableName="comment" domainObjectName="Comment"
                enableCountByExample="true"
                enableUpdateByExample="true"
@@ -38,40 +45,75 @@
                enableSelectByExample="true"
                selectByExampleQueryId="true"
         ></table>
-        <!--<table tableName="blog" domainObjectName="Blog"-->
-               <!--enableCountByExample="true"-->
-               <!--enableUpdateByExample="true"-->
-               <!--enableDeleteByExample="true"-->
-               <!--enableSelectByExample="true"-->
-               <!--selectByExampleQueryId="true"-->
-        <!--&gt;</table>-->
-        <!--<table tableName="label" domainObjectName="Label"-->
-               <!--enableCountByExample="true"-->
-               <!--enableUpdateByExample="true"-->
-               <!--enableDeleteByExample="true"-->
-               <!--enableSelectByExample="true"-->
-               <!--selectByExampleQueryId="true"-->
-        <!--&gt;</table>-->
-        <!--<table tableName="reply_comments" domainObjectName="ReplyComments"-->
-               <!--enableCountByExample="true"-->
-               <!--enableUpdateByExample="true"-->
-               <!--enableDeleteByExample="true"-->
-               <!--enableSelectByExample="true"-->
-               <!--selectByExampleQueryId="true"-->
-        <!--&gt;</table>-->
-        <!--<table tableName="user_blog" domainObjectName="UserBlog"-->
-               <!--enableCountByExample="true"-->
-               <!--enableUpdateByExample="true"-->
-               <!--enableDeleteByExample="true"-->
-               <!--enableSelectByExample="true"-->
-               <!--selectByExampleQueryId="true"-->
-        <!--&gt;</table>-->
-        <!--<table tableName="user_browse" domainObjectName="UserBrowse"-->
-               <!--enableCountByExample="true"-->
-               <!--enableUpdateByExample="true"-->
-               <!--enableDeleteByExample="true"-->
-               <!--enableSelectByExample="true"-->
-               <!--selectByExampleQueryId="true"-->
-        <!--&gt;</table>-->
+        <table tableName="img_blog" domainObjectName="ImgBlog"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"
+        ></table>
+        <table tableName="label" domainObjectName="Label"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"
+        ></table>
+        <table tableName="label_blog" domainObjectName="LabelBlog"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"
+        ></table>
+        <table tableName="notice" domainObjectName="Notice"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"
+        ></table>
+        <table tableName="reply_comments" domainObjectName="ReplyComments"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"
+        ></table>
+        <table tableName="type" domainObjectName="Type"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"
+        ></table>
+        <table tableName="user" domainObjectName="User"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"
+        ></table>
+        <table tableName="user_blog" domainObjectName="UserBlog"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"
+        ></table>
+        <table tableName="user_browse" domainObjectName="UserBrowse"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"
+        ></table>
+        <table tableName="youqing" domainObjectName="YouQing"
+               enableCountByExample="true"
+               enableUpdateByExample="true"
+               enableDeleteByExample="true"
+               enableSelectByExample="true"
+               selectByExampleQueryId="true"
+        ></table>
     </context>
 </generatorConfiguration>

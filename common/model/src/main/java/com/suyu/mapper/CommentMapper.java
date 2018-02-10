@@ -4,9 +4,7 @@ import com.suyu.domain.Comment;
 import com.suyu.domain.CommentExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public interface CommentMapper {
     long countByExample(CommentExample example);
 
@@ -35,5 +33,4 @@ public interface CommentMapper {
     int updateByPrimaryKeyWithBLOBs(Comment record);
 
     int updateByPrimaryKey(Comment record);
-    int selectCommentCount();
 }

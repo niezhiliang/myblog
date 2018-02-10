@@ -5,9 +5,7 @@ import com.suyu.domain.UserBlogExample;
 import com.suyu.domain.UserBlogKey;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.stereotype.Repository;
 
-@Repository
 public interface UserBlogMapper {
     long countByExample(UserBlogExample example);
 

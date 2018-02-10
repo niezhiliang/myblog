@@ -1,18 +1,17 @@
 package com.suyu.service;
 
 import com.suyu.domain.Blog;
-import com.suyu.entity.BlogMain;
+import com.suyu.entity.BlogResult;
 
 import java.util.List;
 
+/**
+ * @Author Suyu
+ * @Date 2018/2/9 上午11:30
+ */
 public interface BlogService {
-    List selectBlogList(BlogMain blogMain);
 
-    Integer selectBlogCount(BlogMain blogMain);
+    public List<Blog> getHotOrder();
 
-    Blog selectByPrimaryKey(Long id);
-
-    int updateByPrimaryKeySelective(Blog record);
-
-    List<Blog> selectReadOrder();
+    public List<BlogResult> getBlogDetail(Long blogId);
 }

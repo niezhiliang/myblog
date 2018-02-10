@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.suyu.mapper.LabelMapper">
-  <resultMap id="BaseResultMap" type="com.suyu.domain.Label">
+<mapper namespace="com.suyu.mapper.ImgBlogMapper">
+  <resultMap id="BaseResultMap" type="com.suyu.domain.ImgBlog">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="labelName" jdbcType="VARCHAR" property="labelname" />
-    <result column="createTime" jdbcType="TIMESTAMP" property="createtime" />
-    <result column="updateTime" jdbcType="TIMESTAMP" property="updatetime" />
-    <result column="state" jdbcType="TINYINT" property="state" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="order" jdbcType="TINYINT" property="order" />
+    <result column="isEnabled" jdbcType="TINYINT" property="isenabled" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -67,16 +67,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, labelName, createTime, updateTime, state
+    id, title, url, order, isEnabled
   </sql>
-  <select id="selectByExample" parameterType="com.suyu.domain.LabelExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.suyu.domain.ImgBlogExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     'true' as QUERYID,
     <include refid="Base_Column_List" />
-    from label
+    from img_blog
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -87,85 +87,85 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from label
+    from img_blog
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from label
+    delete from img_blog
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.suyu.domain.LabelExample">
-    delete from label
+  <delete id="deleteByExample" parameterType="com.suyu.domain.ImgBlogExample">
+    delete from img_blog
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.suyu.domain.Label">
-    insert into label (id, labelName, createTime, 
-      updateTime, state)
-    values (#{id,jdbcType=BIGINT}, #{labelname,jdbcType=VARCHAR}, #{createtime,jdbcType=TIMESTAMP}, 
-      #{updatetime,jdbcType=TIMESTAMP}, #{state,jdbcType=TINYINT})
+  <insert id="insert" parameterType="com.suyu.domain.ImgBlog">
+    insert into img_blog (id, title, url, 
+      order, isEnabled)
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{order,jdbcType=TINYINT}, #{isenabled,jdbcType=TINYINT})
   </insert>
-  <insert id="insertSelective" parameterType="com.suyu.domain.Label">
-    insert into label
+  <insert id="insertSelective" parameterType="com.suyu.domain.ImgBlog">
+    insert into img_blog
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="labelname != null">
-        labelName,
+      <if test="title != null">
+        title,
       </if>
-      <if test="createtime != null">
-        createTime,
+      <if test="url != null">
+        url,
       </if>
-      <if test="updatetime != null">
-        updateTime,
+      <if test="order != null">
+        order,
       </if>
-      <if test="state != null">
-        state,
+      <if test="isenabled != null">
+        isEnabled,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="labelname != null">
-        #{labelname,jdbcType=VARCHAR},
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
       </if>
-      <if test="createtime != null">
-        #{createtime,jdbcType=TIMESTAMP},
+      <if test="url != null">
+        #{url,jdbcType=VARCHAR},
       </if>
-      <if test="updatetime != null">
-        #{updatetime,jdbcType=TIMESTAMP},
+      <if test="order != null">
+        #{order,jdbcType=TINYINT},
       </if>
-      <if test="state != null">
-        #{state,jdbcType=TINYINT},
+      <if test="isenabled != null">
+        #{isenabled,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.suyu.domain.LabelExample" resultType="java.lang.Long">
-    select count(*) from label
+  <select id="countByExample" parameterType="com.suyu.domain.ImgBlogExample" resultType="java.lang.Long">
+    select count(*) from img_blog
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update label
+    update img_blog
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.labelname != null">
-        labelName = #{record.labelname,jdbcType=VARCHAR},
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
       </if>
-      <if test="record.createtime != null">
-        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      <if test="record.url != null">
+        url = #{record.url,jdbcType=VARCHAR},
       </if>
-      <if test="record.updatetime != null">
-        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      <if test="record.order != null">
+        order = #{record.order,jdbcType=TINYINT},
       </if>
-      <if test="record.state != null">
-        state = #{record.state,jdbcType=TINYINT},
+      <if test="record.isenabled != null">
+        isEnabled = #{record.isenabled,jdbcType=TINYINT},
       </if>
     </set>
     <if test="_parameter != null">
@@ -173,40 +173,40 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update label
+    update img_blog
     set id = #{record.id,jdbcType=BIGINT},
-      labelName = #{record.labelname,jdbcType=VARCHAR},
-      createTime = #{record.createtime,jdbcType=TIMESTAMP},
-      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
-      state = #{record.state,jdbcType=TINYINT}
+      title = #{record.title,jdbcType=VARCHAR},
+      url = #{record.url,jdbcType=VARCHAR},
+      order = #{record.order,jdbcType=TINYINT},
+      isEnabled = #{record.isenabled,jdbcType=TINYINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.suyu.domain.Label">
-    update label
+  <update id="updateByPrimaryKeySelective" parameterType="com.suyu.domain.ImgBlog">
+    update img_blog
     <set>
-      <if test="labelname != null">
-        labelName = #{labelname,jdbcType=VARCHAR},
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
       </if>
-      <if test="createtime != null">
-        createTime = #{createtime,jdbcType=TIMESTAMP},
+      <if test="url != null">
+        url = #{url,jdbcType=VARCHAR},
       </if>
-      <if test="updatetime != null">
-        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      <if test="order != null">
+        order = #{order,jdbcType=TINYINT},
       </if>
-      <if test="state != null">
-        state = #{state,jdbcType=TINYINT},
+      <if test="isenabled != null">
+        isEnabled = #{isenabled,jdbcType=TINYINT},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.suyu.domain.Label">
-    update label
-    set labelName = #{labelname,jdbcType=VARCHAR},
-      createTime = #{createtime,jdbcType=TIMESTAMP},
-      updateTime = #{updatetime,jdbcType=TIMESTAMP},
-      state = #{state,jdbcType=TINYINT}
+  <update id="updateByPrimaryKey" parameterType="com.suyu.domain.ImgBlog">
+    update img_blog
+    set title = #{title,jdbcType=VARCHAR},
+      url = #{url,jdbcType=VARCHAR},
+      order = #{order,jdbcType=TINYINT},
+      isEnabled = #{isenabled,jdbcType=TINYINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

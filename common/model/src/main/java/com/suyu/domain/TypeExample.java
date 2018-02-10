@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class CommentExample {
+public class TypeExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public CommentExample() {
+    public TypeExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -165,243 +165,193 @@ public class CommentExample {
             return (Criteria) this;
         }
 
-        public Criteria andUidIsNull() {
-            addCriterion("uid is null");
+        public Criteria andBlogtypeIsNull() {
+            addCriterion("blogType is null");
             return (Criteria) this;
         }
 
-        public Criteria andUidIsNotNull() {
-            addCriterion("uid is not null");
+        public Criteria andBlogtypeIsNotNull() {
+            addCriterion("blogType is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUidEqualTo(Long value) {
-            addCriterion("uid =", value, "uid");
+        public Criteria andBlogtypeEqualTo(String value) {
+            addCriterion("blogType =", value, "blogtype");
             return (Criteria) this;
         }
 
-        public Criteria andUidNotEqualTo(Long value) {
-            addCriterion("uid <>", value, "uid");
+        public Criteria andBlogtypeNotEqualTo(String value) {
+            addCriterion("blogType <>", value, "blogtype");
             return (Criteria) this;
         }
 
-        public Criteria andUidGreaterThan(Long value) {
-            addCriterion("uid >", value, "uid");
+        public Criteria andBlogtypeGreaterThan(String value) {
+            addCriterion("blogType >", value, "blogtype");
             return (Criteria) this;
         }
 
-        public Criteria andUidGreaterThanOrEqualTo(Long value) {
-            addCriterion("uid >=", value, "uid");
+        public Criteria andBlogtypeGreaterThanOrEqualTo(String value) {
+            addCriterion("blogType >=", value, "blogtype");
             return (Criteria) this;
         }
 
-        public Criteria andUidLessThan(Long value) {
-            addCriterion("uid <", value, "uid");
+        public Criteria andBlogtypeLessThan(String value) {
+            addCriterion("blogType <", value, "blogtype");
             return (Criteria) this;
         }
 
-        public Criteria andUidLessThanOrEqualTo(Long value) {
-            addCriterion("uid <=", value, "uid");
+        public Criteria andBlogtypeLessThanOrEqualTo(String value) {
+            addCriterion("blogType <=", value, "blogtype");
             return (Criteria) this;
         }
 
-        public Criteria andUidIn(List<Long> values) {
-            addCriterion("uid in", values, "uid");
+        public Criteria andBlogtypeLike(String value) {
+            addCriterion("blogType like", value, "blogtype");
             return (Criteria) this;
         }
 
-        public Criteria andUidNotIn(List<Long> values) {
-            addCriterion("uid not in", values, "uid");
+        public Criteria andBlogtypeNotLike(String value) {
+            addCriterion("blogType not like", value, "blogtype");
             return (Criteria) this;
         }
 
-        public Criteria andUidBetween(Long value1, Long value2) {
-            addCriterion("uid between", value1, value2, "uid");
+        public Criteria andBlogtypeIn(List<String> values) {
+            addCriterion("blogType in", values, "blogtype");
             return (Criteria) this;
         }
 
-        public Criteria andUidNotBetween(Long value1, Long value2) {
-            addCriterion("uid not between", value1, value2, "uid");
+        public Criteria andBlogtypeNotIn(List<String> values) {
+            addCriterion("blogType not in", values, "blogtype");
             return (Criteria) this;
         }
 
-        public Criteria andBidIsNull() {
-            addCriterion("bid is null");
+        public Criteria andBlogtypeBetween(String value1, String value2) {
+            addCriterion("blogType between", value1, value2, "blogtype");
             return (Criteria) this;
         }
 
-        public Criteria andBidIsNotNull() {
-            addCriterion("bid is not null");
+        public Criteria andBlogtypeNotBetween(String value1, String value2) {
+            addCriterion("blogType not between", value1, value2, "blogtype");
             return (Criteria) this;
         }
 
-        public Criteria andBidEqualTo(Long value) {
-            addCriterion("bid =", value, "bid");
+        public Criteria andIsenableIsNull() {
+            addCriterion("isEnable is null");
             return (Criteria) this;
         }
 
-        public Criteria andBidNotEqualTo(Long value) {
-            addCriterion("bid <>", value, "bid");
+        public Criteria andIsenableIsNotNull() {
+            addCriterion("isEnable is not null");
             return (Criteria) this;
         }
 
-        public Criteria andBidGreaterThan(Long value) {
-            addCriterion("bid >", value, "bid");
+        public Criteria andIsenableEqualTo(Byte value) {
+            addCriterion("isEnable =", value, "isenable");
             return (Criteria) this;
         }
 
-        public Criteria andBidGreaterThanOrEqualTo(Long value) {
-            addCriterion("bid >=", value, "bid");
+        public Criteria andIsenableNotEqualTo(Byte value) {
+            addCriterion("isEnable <>", value, "isenable");
             return (Criteria) this;
         }
 
-        public Criteria andBidLessThan(Long value) {
-            addCriterion("bid <", value, "bid");
+        public Criteria andIsenableGreaterThan(Byte value) {
+            addCriterion("isEnable >", value, "isenable");
             return (Criteria) this;
         }
 
-        public Criteria andBidLessThanOrEqualTo(Long value) {
-            addCriterion("bid <=", value, "bid");
+        public Criteria andIsenableGreaterThanOrEqualTo(Byte value) {
+            addCriterion("isEnable >=", value, "isenable");
             return (Criteria) this;
         }
 
-        public Criteria andBidIn(List<Long> values) {
-            addCriterion("bid in", values, "bid");
+        public Criteria andIsenableLessThan(Byte value) {
+            addCriterion("isEnable <", value, "isenable");
             return (Criteria) this;
         }
 
-        public Criteria andBidNotIn(List<Long> values) {
-            addCriterion("bid not in", values, "bid");
+        public Criteria andIsenableLessThanOrEqualTo(Byte value) {
+            addCriterion("isEnable <=", value, "isenable");
             return (Criteria) this;
         }
 
-        public Criteria andBidBetween(Long value1, Long value2) {
-            addCriterion("bid between", value1, value2, "bid");
+        public Criteria andIsenableIn(List<Byte> values) {
+            addCriterion("isEnable in", values, "isenable");
             return (Criteria) this;
         }
 
-        public Criteria andBidNotBetween(Long value1, Long value2) {
-            addCriterion("bid not between", value1, value2, "bid");
+        public Criteria andIsenableNotIn(List<Byte> values) {
+            addCriterion("isEnable not in", values, "isenable");
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeIsNull() {
-            addCriterion("commentTime is null");
+        public Criteria andIsenableBetween(Byte value1, Byte value2) {
+            addCriterion("isEnable between", value1, value2, "isenable");
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeIsNotNull() {
-            addCriterion("commentTime is not null");
+        public Criteria andIsenableNotBetween(Byte value1, Byte value2) {
+            addCriterion("isEnable not between", value1, value2, "isenable");
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeEqualTo(Date value) {
-            addCriterion("commentTime =", value, "commenttime");
+        public Criteria andCreateatIsNull() {
+            addCriterion("createAt is null");
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeNotEqualTo(Date value) {
-            addCriterion("commentTime <>", value, "commenttime");
+        public Criteria andCreateatIsNotNull() {
+            addCriterion("createAt is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeGreaterThan(Date value) {
-            addCriterion("commentTime >", value, "commenttime");
+        public Criteria andCreateatEqualTo(Date value) {
+            addCriterion("createAt =", value, "createat");
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("commentTime >=", value, "commenttime");
+        public Criteria andCreateatNotEqualTo(Date value) {
+            addCriterion("createAt <>", value, "createat");
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeLessThan(Date value) {
-            addCriterion("commentTime <", value, "commenttime");
+        public Criteria andCreateatGreaterThan(Date value) {
+            addCriterion("createAt >", value, "createat");
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeLessThanOrEqualTo(Date value) {
-            addCriterion("commentTime <=", value, "commenttime");
+        public Criteria andCreateatGreaterThanOrEqualTo(Date value) {
+            addCriterion("createAt >=", value, "createat");
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeIn(List<Date> values) {
-            addCriterion("commentTime in", values, "commenttime");
+        public Criteria andCreateatLessThan(Date value) {
+            addCriterion("createAt <", value, "createat");
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeNotIn(List<Date> values) {
-            addCriterion("commentTime not in", values, "commenttime");
+        public Criteria andCreateatLessThanOrEqualTo(Date value) {
+            addCriterion("createAt <=", value, "createat");
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeBetween(Date value1, Date value2) {
-            addCriterion("commentTime between", value1, value2, "commenttime");
+        public Criteria andCreateatIn(List<Date> values) {
+            addCriterion("createAt in", values, "createat");
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeNotBetween(Date value1, Date value2) {
-            addCriterion("commentTime not between", value1, value2, "commenttime");
+        public Criteria andCreateatNotIn(List<Date> values) {
+            addCriterion("createAt not in", values, "createat");
             return (Criteria) this;
         }
 
-        public Criteria andStateIsNull() {
-            addCriterion("state is null");
+        public Criteria andCreateatBetween(Date value1, Date value2) {
+            addCriterion("createAt between", value1, value2, "createat");
             return (Criteria) this;
         }
 
-        public Criteria andStateIsNotNull() {
-            addCriterion("state is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateEqualTo(Byte value) {
-            addCriterion("state =", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateNotEqualTo(Byte value) {
-            addCriterion("state <>", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateGreaterThan(Byte value) {
-            addCriterion("state >", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateGreaterThanOrEqualTo(Byte value) {
-            addCriterion("state >=", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateLessThan(Byte value) {
-            addCriterion("state <", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateLessThanOrEqualTo(Byte value) {
-            addCriterion("state <=", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateIn(List<Byte> values) {
-            addCriterion("state in", values, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateNotIn(List<Byte> values) {
-            addCriterion("state not in", values, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateBetween(Byte value1, Byte value2) {
-            addCriterion("state between", value1, value2, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateNotBetween(Byte value1, Byte value2) {
-            addCriterion("state not between", value1, value2, "state");
+        public Criteria andCreateatNotBetween(Date value1, Date value2) {
+            addCriterion("createAt not between", value1, value2, "createat");
             return (Criteria) this;
         }
     }

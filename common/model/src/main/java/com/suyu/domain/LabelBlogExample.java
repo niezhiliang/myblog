@@ -1,17 +1,16 @@
 package com.suyu.domain;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class CommentExample {
+public class LabelBlogExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public CommentExample() {
+    public LabelBlogExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -105,126 +104,6 @@ public class CommentExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andIdIsNull() {
-            addCriterion("id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdIsNotNull() {
-            addCriterion("id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdEqualTo(Long value) {
-            addCriterion("id =", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdNotEqualTo(Long value) {
-            addCriterion("id <>", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdGreaterThan(Long value) {
-            addCriterion("id >", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdGreaterThanOrEqualTo(Long value) {
-            addCriterion("id >=", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdLessThan(Long value) {
-            addCriterion("id <", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdLessThanOrEqualTo(Long value) {
-            addCriterion("id <=", value, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdIn(List<Long> values) {
-            addCriterion("id in", values, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdNotIn(List<Long> values) {
-            addCriterion("id not in", values, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdBetween(Long value1, Long value2) {
-            addCriterion("id between", value1, value2, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andIdNotBetween(Long value1, Long value2) {
-            addCriterion("id not between", value1, value2, "id");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidIsNull() {
-            addCriterion("uid is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidIsNotNull() {
-            addCriterion("uid is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidEqualTo(Long value) {
-            addCriterion("uid =", value, "uid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidNotEqualTo(Long value) {
-            addCriterion("uid <>", value, "uid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidGreaterThan(Long value) {
-            addCriterion("uid >", value, "uid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidGreaterThanOrEqualTo(Long value) {
-            addCriterion("uid >=", value, "uid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidLessThan(Long value) {
-            addCriterion("uid <", value, "uid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidLessThanOrEqualTo(Long value) {
-            addCriterion("uid <=", value, "uid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidIn(List<Long> values) {
-            addCriterion("uid in", values, "uid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidNotIn(List<Long> values) {
-            addCriterion("uid not in", values, "uid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidBetween(Long value1, Long value2) {
-            addCriterion("uid between", value1, value2, "uid");
-            return (Criteria) this;
-        }
-
-        public Criteria andUidNotBetween(Long value1, Long value2) {
-            addCriterion("uid not between", value1, value2, "uid");
-            return (Criteria) this;
-        }
-
         public Criteria andBidIsNull() {
             addCriterion("bid is null");
             return (Criteria) this;
@@ -285,123 +164,63 @@ public class CommentExample {
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeIsNull() {
-            addCriterion("commentTime is null");
+        public Criteria andLidIsNull() {
+            addCriterion("lid is null");
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeIsNotNull() {
-            addCriterion("commentTime is not null");
+        public Criteria andLidIsNotNull() {
+            addCriterion("lid is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeEqualTo(Date value) {
-            addCriterion("commentTime =", value, "commenttime");
+        public Criteria andLidEqualTo(Long value) {
+            addCriterion("lid =", value, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeNotEqualTo(Date value) {
-            addCriterion("commentTime <>", value, "commenttime");
+        public Criteria andLidNotEqualTo(Long value) {
+            addCriterion("lid <>", value, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeGreaterThan(Date value) {
-            addCriterion("commentTime >", value, "commenttime");
+        public Criteria andLidGreaterThan(Long value) {
+            addCriterion("lid >", value, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("commentTime >=", value, "commenttime");
+        public Criteria andLidGreaterThanOrEqualTo(Long value) {
+            addCriterion("lid >=", value, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeLessThan(Date value) {
-            addCriterion("commentTime <", value, "commenttime");
+        public Criteria andLidLessThan(Long value) {
+            addCriterion("lid <", value, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeLessThanOrEqualTo(Date value) {
-            addCriterion("commentTime <=", value, "commenttime");
+        public Criteria andLidLessThanOrEqualTo(Long value) {
+            addCriterion("lid <=", value, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeIn(List<Date> values) {
-            addCriterion("commentTime in", values, "commenttime");
+        public Criteria andLidIn(List<Long> values) {
+            addCriterion("lid in", values, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeNotIn(List<Date> values) {
-            addCriterion("commentTime not in", values, "commenttime");
+        public Criteria andLidNotIn(List<Long> values) {
+            addCriterion("lid not in", values, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeBetween(Date value1, Date value2) {
-            addCriterion("commentTime between", value1, value2, "commenttime");
+        public Criteria andLidBetween(Long value1, Long value2) {
+            addCriterion("lid between", value1, value2, "lid");
             return (Criteria) this;
         }
 
-        public Criteria andCommenttimeNotBetween(Date value1, Date value2) {
-            addCriterion("commentTime not between", value1, value2, "commenttime");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateIsNull() {
-            addCriterion("state is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateIsNotNull() {
-            addCriterion("state is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateEqualTo(Byte value) {
-            addCriterion("state =", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateNotEqualTo(Byte value) {
-            addCriterion("state <>", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateGreaterThan(Byte value) {
-            addCriterion("state >", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateGreaterThanOrEqualTo(Byte value) {
-            addCriterion("state >=", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateLessThan(Byte value) {
-            addCriterion("state <", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateLessThanOrEqualTo(Byte value) {
-            addCriterion("state <=", value, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateIn(List<Byte> values) {
-            addCriterion("state in", values, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateNotIn(List<Byte> values) {
-            addCriterion("state not in", values, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateBetween(Byte value1, Byte value2) {
-            addCriterion("state between", value1, value2, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andStateNotBetween(Byte value1, Byte value2) {
-            addCriterion("state not between", value1, value2, "state");
+        public Criteria andLidNotBetween(Long value1, Long value2) {
+            addCriterion("lid not between", value1, value2, "lid");
             return (Criteria) this;
         }
     }

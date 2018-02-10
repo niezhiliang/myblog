@@ -25,8 +25,6 @@ public class User {
 
     private String wechart;
 
-    private String token;
-
     public Long getId() {
         return id;
     }
@@ -118,16 +116,5 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-    }
-
-    public User() {
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
     }
 }

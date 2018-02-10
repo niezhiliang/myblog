@@ -267,9 +267,4 @@
       state = #{state,jdbcType=TINYINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <select id="selectCommentCount" resultType="java.lang.Integer">
-    select
-    count(*)
-    from comment
-  </select>
 </mapper>

@@ -9,7 +9,7 @@ public class Blog {
 
     private String resume;
 
-    private Byte lid;
+    private Byte tid;
 
     private Date createtime;
 
@@ -45,12 +45,12 @@ public class Blog {
         this.resume = resume == null ? null : resume.trim();
     }
 
-    public Byte getLid() {
-        return lid;
+    public Byte getTid() {
+        return tid;
     }
 
-    public void setLid(Byte lid) {
-        this.lid = lid;
+    public void setTid(Byte tid) {
+        this.tid = tid;
     }
 
     public Date getCreatetime() {
