@@ -5,7 +5,7 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="url" jdbcType="VARCHAR" property="url" />
-    <result column="order" jdbcType="TINYINT" property="order" />
+    <result column="ordered" jdbcType="TINYINT" property="ordered" />
     <result column="isEnabled" jdbcType="TINYINT" property="isenabled" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -67,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, url, order, isEnabled
+    id, title, url, ordered, isEnabled
   </sql>
   <select id="selectByExample" parameterType="com.suyu.domain.ImgBlogExample" resultMap="BaseResultMap">
     select
@@ -102,9 +102,9 @@
   </delete>
   <insert id="insert" parameterType="com.suyu.domain.ImgBlog">
     insert into img_blog (id, title, url, 
-      order, isEnabled)
+      ordered, isEnabled)
     values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
-      #{order,jdbcType=TINYINT}, #{isenabled,jdbcType=TINYINT})
+      #{ordered,jdbcType=TINYINT}, #{isenabled,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="com.suyu.domain.ImgBlog">
     insert into img_blog
@@ -118,8 +118,8 @@
       <if test="url != null">
         url,
       </if>
-      <if test="order != null">
-        order,
+      <if test="ordered != null">
+        ordered,
       </if>
       <if test="isenabled != null">
         isEnabled,
@@ -135,8 +135,8 @@
       <if test="url != null">
         #{url,jdbcType=VARCHAR},
       </if>
-      <if test="order != null">
-        #{order,jdbcType=TINYINT},
+      <if test="ordered != null">
+        #{ordered,jdbcType=TINYINT},
       </if>
       <if test="isenabled != null">
         #{isenabled,jdbcType=TINYINT},
@@ -161,8 +161,8 @@
       <if test="record.url != null">
         url = #{record.url,jdbcType=VARCHAR},
       </if>
-      <if test="record.order != null">
-        order = #{record.order,jdbcType=TINYINT},
+      <if test="record.ordered != null">
+        ordered = #{record.ordered,jdbcType=TINYINT},
       </if>
       <if test="record.isenabled != null">
         isEnabled = #{record.isenabled,jdbcType=TINYINT},
@@ -177,7 +177,7 @@
     set id = #{record.id,jdbcType=BIGINT},
       title = #{record.title,jdbcType=VARCHAR},
       url = #{record.url,jdbcType=VARCHAR},
-      order = #{record.order,jdbcType=TINYINT},
+      ordered = #{record.ordered,jdbcType=TINYINT},
       isEnabled = #{record.isenabled,jdbcType=TINYINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -192,8 +192,8 @@
       <if test="url != null">
         url = #{url,jdbcType=VARCHAR},
       </if>
-      <if test="order != null">
-        order = #{order,jdbcType=TINYINT},
+      <if test="ordered != null">
+        ordered = #{ordered,jdbcType=TINYINT},
       </if>
       <if test="isenabled != null">
         isEnabled = #{isenabled,jdbcType=TINYINT},
@@ -205,7 +205,7 @@
     update img_blog
     set title = #{title,jdbcType=VARCHAR},
       url = #{url,jdbcType=VARCHAR},
-      order = #{order,jdbcType=TINYINT},
+      ordered = #{ordered,jdbcType=TINYINT},
       isEnabled = #{isenabled,jdbcType=TINYINT}
     where id = #{id,jdbcType=BIGINT}
   </update>

@@ -1,14 +1,13 @@
 ## API http://www.huding.name/index.html
 
-#### 登录
+#### 首页跑马灯图片加载
 
-##### url:http://127.0.0.1:8087/label/getlabels
+##### url:127.0.0.1:8080/img/get
 
 ##### 所需data
 
     {
-        phone: '15900610143',
-        password: '123456'
+        null
     }
     
 #### 标签查询

@@ -7,7 +7,7 @@ public class ImgBlog {
 
     private String url;
 
-    private Byte order;
+    private Byte ordered;
 
     private Byte isenabled;
 
@@ -35,12 +35,12 @@ public class ImgBlog {
         this.url = url == null ? null : url.trim();
     }
 
-    public Byte getOrder() {
-        return order;
+    public Byte getOrdered() {
+        return ordered;
     }
 
-    public void setOrder(Byte order) {
-        this.order = order;
+    public void setOrdered(Byte ordered) {
+        this.ordered = ordered;
     }
 
     public Byte getIsenabled() {

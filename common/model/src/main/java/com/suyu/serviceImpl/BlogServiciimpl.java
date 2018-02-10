@@ -5,6 +5,7 @@ import com.suyu.entity.BlogResult;
 import com.suyu.service.BlogService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
 
 /**
  * @Author Suyu
@@ -14,12 +15,12 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class BlogServiciimpl implements BlogService {
     @Override
-    public Blog getHotOrder() {
-        return new Blog();
+    public List<Blog> getHotOrder() {
+        return null;
     }
 
     @Override
-    public BlogResult getBlogDetail(Long blogId) {
+    public List<BlogResult> getBlogDetail(Long blogId) {
         return null;
     }
 }
