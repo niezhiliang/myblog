@@ -1,5 +1,6 @@
 package com.suyu.entity;
 
+import com.suyu.domain.Blog;
 import java.util.List;
 
 public class BlogPublic {
@@ -10,7 +11,19 @@ public class BlogPublic {
     /**正文**/
     private String content;
     /**分类型**/
-    private List<Object> types;
+    private List<String> types;
+
+    private String blogType;
+
+    private Blog blog;
+
+    public Blog getBlog() {
+        return blog;
+    }
+
+    public void setBlog(Blog blog) {
+        this.blog = blog;
+    }
 
     public String getTitle() {
         return title;
@@ -36,14 +49,6 @@ public class BlogPublic {
         this.content = content;
     }
 
-    public List<Object> getTypes() {
-        return types;
-    }
-
-    public void setTypes(List<Object> types) {
-        this.types = types;
-    }
-
     @Override
     public String toString() {
         return "BlogPublic{" +
@@ -52,5 +57,21 @@ public class BlogPublic {
                 ", content='" + content + '\'' +
                 ", types=" + types +
                 '}';
+    }
+
+    public String getBlogType() {
+        return blogType;
+    }
+
+    public void setBlogType(String blogType) {
+        this.blogType = blogType;
+    }
+
+    public List<String> getTypes() {
+        return types;
+    }
+
+    public void setTypes(List<String> types) {
+        this.types = types;
     }
 }

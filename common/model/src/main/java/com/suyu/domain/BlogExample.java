@@ -11,6 +11,26 @@ public class BlogExample {
 
     protected List<Criteria> oredCriteria;
 
+    protected Integer startRow = 0;
+
+    protected Integer pageSize = 5;
+
+    public Integer getStartRow() {
+        return startRow;
+    }
+
+    public void setStartRow(Integer startRow) {
+        this.startRow = startRow;
+    }
+
+    public Integer getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+
     public BlogExample() {
         oredCriteria = new ArrayList<Criteria>();
     }

@@ -6,8 +6,9 @@
       <el-container>
         <el-aside width="860px" style="height: 100%">
           <template>
-            <el-carousel indicator-position="outside">
-              <el-carousel-item v-for="item in 4" :key="item">
+            <el-carousel>
+              <el-carousel-item v-for="img in imgs">
+                <img style="width: 100%;height: 100%;display: block;" :src="img.url"></img>
               </el-carousel-item>
             </el-carousel>
           </template>
@@ -16,32 +17,32 @@
             <div slot="header" class="clearfix">
               <span>热门排行</span>
             </div>
-            <div v-for="o in 4" :key="o" class="text item" style="cursor:pointer">
+            <div v-for="blog in bloghot"  class="text item" style="cursor:pointer">
               <Icon type="ios-infinite-outline"></Icon>
-              <a href="#"><span>{{'Java多线程运行原理深度挖掘 ' + o }}</span></a>
+              <a href="#"><span>{{ blog.title }}</span></a>
               <div style="float: right;margin-right: 30px">
-                <b>阅读:</b><i>520</i>
+                <b>阅读:</b><i>{{ blog.readcount }}</i>
               </div>
             </div>
           </el-card>
           <!-- 文章简介卡片 -->
-          <el-card class="box-card card-border" style="margin-top: 10px;padding-top: 10px" v-for="i in 5">
+          <el-card class="box-card card-border" style="margin-top: 10px;padding-top: 10px" v-for="b in blogs">
             <div style="margin-top: -10px">
               <span class="qing-category">技术</span>
               <i class="el-icon-caret-right icon-size" ></i>
-              <a href="#" style="color: cornflowerblue;font-size: 16px">Java多线程运行原理深度挖掘</a>
+              <router-link
+                :to="{path:'blog',query: {bid: b.blog.id}}" style="color: cornflowerblue;font-size: 16px">{{ b.blog.title  }}</router-link>
             </div>
             <div class="qing-list-hint">
               <span><Icon type="person" style="font-size: 13px;color:#01AAED"></Icon> 木槿心 </span>
-              <span><Icon type="clock" style="color: darkgoldenrod;"></Icon>&nbsp; 2018-02-09&nbsp;</span>
-              <span><Icon type="ios-eye" style="color:#01AAED;font-size: 15px"></Icon>&nbsp;阅读(58)&nbsp;</span>
-              <span><Icon type="ios-chatboxes" style="font-size: 13px;color:#67c23a;"></Icon>&nbsp;评论(1)</span>
+              <span><Icon type="clock" style="color: darkgoldenrod;"></Icon>&nbsp; {{ b.blog.createtime | time }}&nbsp;</span>
+              <span><Icon type="ios-eye" style="color:#01AAED;font-size: 15px"></Icon>&nbsp;阅读({{ b.blog.readcount }})&nbsp;</span>
+              <span><Icon type="ios-chatboxes" style="font-size: 13px;color:#67c23a;"></Icon>&nbsp;评论( {{ b.blog.comment }})</span>
             </div>
-            <p class="qing-list-content">JavaScript学习总结，undefined是全局对象（window）的一个特殊属性，其值是未定义的(当尝试读取不存在的对象属性时会返回 undefined)</p>
+            <p class="qing-list-content">{{ b.blog.resume }}</p>
             <div class="qing-list-foot">
               <Icon type="ios-pricetags" style="margin-right: 5px"></Icon>
-              <span class="am-radius">#前端</span>
-              <span class="am-radius">#JS</span>
+              <span class="am-radius" v-for="l in b.types">#{{ l }}</span>
               <a href="/B20170905221529.html" class="qing-read-more">阅读全文&gt;&gt;</a> </div>
           </el-card>
           <!-- 分页 -->
@@ -54,11 +55,6 @@
             </el-pagination>
 
         </el-aside>
-        <!-- 模块之间的间隔-->
-        <!--<div style="background-color: #f4f4f4;">-->
-          <!--<el-aside width="20px"></el-aside>-->
-        <!--</div>-->
-        <!-- 页面中间模块-->
         <el-main>
           <div class="top-main">
             <!-- 标签 -->
@@ -66,11 +62,8 @@
               <div slot="header" class="clearfix">
                 <span>文章分类</span>
               </div>
-              <div v-for="o in 5" :key="o" style="cursor:pointer">
-                <Tag checkable color="blue">标签一</Tag>
-                <Tag checkable color="green">标签二</Tag>
-                <Tag checkable color="red">标签三</Tag>
-                <Tag checkable color="yellow">标签四</Tag>
+              <div v-for="o in labels" :key="o" style="cursor:pointer;display: inline">
+                <Tag checkable color="blue">{{ o.labelname}}</Tag>
               </div>
             </el-card>
             <!--最新文章-->
@@ -78,9 +71,10 @@
               <div slot="header" class="clearfix">
                 <span>最新文章</span>
               </div>
-              <div v-for="o in 4" :key="o" style="cursor:pointer">
+              <div v-for="o in blognew" :key="o" style="cursor:pointer">
                 <div style="margin-top: 8px">
-                  <a class="qing-item-link" href="/B20180124164708.html">RocketMQ4.2在纯IPv6环境下使用的问题</a>
+                  <router-link
+                    :to="{path:'blog',query: {bid: o.id}}">{{ o.title  }}</router-link>
                 </div>
               </div>
             </el-card>
@@ -108,9 +102,9 @@
               <div slot="header" class="clearfix">
                 <span>友情链接</span>
               </div>
-              <div v-for="o in 4" :key="o" style="cursor:pointer">
+              <div v-for="o in youqings" :key="o" style="cursor:pointer">
                 <div style="margin-top: 8px">
-                  <a class="qing-item-link" href="/B20180124164708.html">我的GitHub</a>
+                  <a class="qing-item-link" :href="o.url">{{ o.name }}</a>
                 </div>
               </div>
             </el-card>
@@ -128,34 +122,33 @@
     name: 'Test',
     data () {
       return {
-        lefttop: {
-          blogcount: 0,
-          comments: 0,
-          user: {
-            headimage: '',
-            id: '',
-            username: ''
-          },
-          visitcount: ''
-        },
+        bloghot: [],
+        blognew: [],
+        imgs: [],
+        youqings: [],
         blogs: [],
-        blogord: [],
-        currpage: 1,
-        count: 1,
-        pages: 1,
-        value2: 0
+        labels: [],
+        labeltype: {
+          0 : "blue",
+          1 : "green",
+          2 : "red",
+          3 : "yellow"
+        },
+        condition : {
+          pageSize : 6,
+          pageNo: 1,
+          title: null
+        }
+
       }
     },
     created () {
-      this.islogin = this.$store.state.islogin
-      if (this.islogin === false) {
-        this.$router.push('/login')
-      }
-      this.open()
-      this.initLab()
-      this.initBlog()
-      this.initOrder()
-      this.initLeftTop()
+      this.getblogs(),
+      this.hotblog(),
+      this.newblog(),
+      this.youqing(),
+      this.getimgs(),
+      this.getlabels()
     },
     mounted () {
     },
@@ -163,52 +156,50 @@
       open () {
         this.$message('登录成功')
       },
-      initLab () {
-        request.post('/label/getlabelsandcount').then((res) => {
+      hotblog () {
+        request.post('/blog/hotblog').then((res) => {
+          if (res.data.code === 20) {
+            this.bloghot = res.data.content
+          }
+        })
+      },
+      newblog () {
+        request.post('/blog/newblog').then((res) => {
+          if (res.data.code === 20) {
+            this.blognew = res.data.content
+          }
+        })
+      },
+      getimgs () {
+        request.post('/img/get').then((res) => {
           if (res.data.code === 20) {
             console.log(res.data.content)
-            this.tags = res.data.content
+            this.imgs = res.data.content
           }
         })
       },
-      initBlog () {
-        request.post('/blog/list', this.select).then((res) => {
-          if (res.data.code === 20) {
-            this.blogs = res.data.content.blogs
-            this.currpage = res.data.content.currpage
-            this.pages = res.data.content.pages
-            this.count = res.data.content.count
-          }
-        })
-      },
-      initOrder () {
-        request.post('/blog/readorder').then((res) => {
+      youqing () {
+        request.post('/youqing/index').then((res) => {
           if (res.data.code === 20) {
             console.log(res.data.content)
-            this.blogord = res.data.content
+            this.youqings = res.data.content
           }
         })
       },
-      changePage () {
-        console.log(this.select.pageno)
-        console.log(this.select.pagesize)
-        this.initBlog()
-      },
-      initLeftTop () {
-        request.post('/user/blogleft', {id: 1}).then((res) => {
+      getblogs () {
+        request.post('/blog/index',this.condition).then((res) => {
           if (res.data.code === 20) {
             console.log(res.data.content)
-            this.lefttop = res.data.content
+            this.blogs = res.data.content
           }
         })
       },
-      selectkind (lid) {
-        this.select.pageno = 1
-        this.select.lid = lid
-        this.initBlog()
-      },
-      changestyle () {
-        console.log(110)
+      getlabels () {
+        request.post('/label/all').then((res) => {
+          if (res.data.code === 20) {
+            this.labels = res.data.content
+          }
+        })
       }
     },
     components: { vheader }
@@ -370,6 +361,7 @@
   }
   .am-radius {
     border-radius: 2px;
+    margin-right: 3px;
   }
   .qing-list-foot a {
     margin: 0.15rem 0.15rem;

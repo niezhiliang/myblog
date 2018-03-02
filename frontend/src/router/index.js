@@ -5,7 +5,7 @@ import App from '@/App'
 import Head from '@/pages/head'
 import Login from '@/pages/login'
 import Regist from '@/pages/regist'
-import Blog from '@/pages/blog'
+import Blog from '@/pages/blogdetail'
 
 Vue.use(Router)
 

@@ -73,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, title, resume, tid, createTime, updatetime, readcount, comment
+    id, title, resume, tid, createTime, updatetime, readcount, comment, content
   </sql>
   <sql id="Blob_Column_List">
     content
@@ -108,6 +108,9 @@
     </if>
     <if test="orderByClause != null">
       order by ${orderByClause}
+    </if>
+    <if test="startRow != null and pageSize != null and pageSize != 0">
+      limit #{startRow},#{pageSize}
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">

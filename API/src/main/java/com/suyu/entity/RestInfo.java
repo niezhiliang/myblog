@@ -2,7 +2,7 @@ package com.suyu.entity;
 
 public class RestInfo {
 
-    private Integer code;
+    private Integer code = InfoCode.ERROR;
 
     private Object content;
 
