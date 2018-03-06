@@ -21,7 +21,8 @@ public class BlogLabelServiceImpl implements BlogLabelService {
 
     @Override
     public int insertSelective(LabelBlog record) {
-        return 0;
+
+        return labelBlogMapper.insertSelective(record);
     }
 
     @Override

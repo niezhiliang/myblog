@@ -19,7 +19,8 @@
             </div>
             <div v-for="blog in bloghot"  class="text item" style="cursor:pointer">
               <Icon type="ios-infinite-outline"></Icon>
-              <a href="#"><span>{{ blog.title }}</span></a>
+              <router-link
+                :to="{path:'blog',query: {bid: blog.id}}">{{ blog.title  }}</router-link>
               <div style="float: right;margin-right: 30px">
                 <b>阅读:</b><i>{{ blog.readcount }}</i>
               </div>
@@ -43,7 +44,9 @@
             <div class="qing-list-foot">
               <Icon type="ios-pricetags" style="margin-right: 5px"></Icon>
               <span class="am-radius" v-for="l in b.types">#{{ l }}</span>
-              <a href="/B20170905221529.html" class="qing-read-more">阅读全文&gt;&gt;</a> </div>
+              <router-link
+                :to="{path:'blog',query: {bid: b.blog.id}}" class="qing-read-more">阅读全文&gt;&gt;</router-link>
+             </div>
           </el-card>
           <!-- 分页 -->
             <el-pagination

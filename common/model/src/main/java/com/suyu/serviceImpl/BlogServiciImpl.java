@@ -2,13 +2,18 @@ package com.suyu.serviceImpl;
 
 import com.suyu.domain.Blog;
 import com.suyu.domain.BlogExample;
+import com.suyu.domain.LabelBlog;
 import com.suyu.entity.BlogParams;
+import com.suyu.entity.BlogPublicEntity;
 import com.suyu.entity.BlogResult;
 import com.suyu.mapper.BlogMapper;
+import com.suyu.service.BlogLabelService;
 import com.suyu.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,6 +25,8 @@ import java.util.List;
 public class BlogServiciImpl implements BlogService {
     @Autowired
     private BlogMapper blogMapper;
+    @Autowired
+    private BlogLabelService blogLabelService;
     @Override
     public List<Blog> getHotOrder() {
         BlogExample blogExample = new BlogExample();
@@ -60,5 +67,31 @@ public class BlogServiciImpl implements BlogService {
         BlogExample blogExample = new BlogExample();
         blogExample.createCriteria().andIdEqualTo(bid);
         return blogMapper.selectByExample(blogExample);
+    }
+
+    @Override
+    public boolean publicBlog(BlogPublicEntity blogPublicEntity) {
+        Blog blog = new Blog();
+        blog.setTitle(blogPublicEntity.getTitle());
+        blog.setResume(blogPublicEntity.getResume());
+        blog.setContent(blogPublicEntity.getHtml());
+        blog.setCreatetime(new Date());
+        blog.setTid(Byte.parseByte(blogPublicEntity.getTypeId().toString()));
+        blog.setUpdatetime(new Date());
+        blog.setReadcount(0);
+        blog.setComment(0);
+        int num = blogMapper.insertSelective(blog);
+        if (num > 0) {
+            for (Long lid : blogPublicEntity.getSelected()) {
+                LabelBlog labelBlog = new LabelBlog();
+                labelBlog.setBid(blog.getId());
+                labelBlog.setLid(lid);
+                num = blogLabelService.insertSelective(labelBlog);
+            }
+            if (num > 0) {
+                return true;
+            }
+        }
+        return false;
     }
 }

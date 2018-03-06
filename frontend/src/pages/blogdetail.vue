@@ -7,7 +7,14 @@
         <el-aside width="860px" style="height: 100%">
           <el-card class="box-card">
             <div slot="header" class="clearfix">
-              <router-link :to="{ name: 'index' }">首页</router-link>>><a>springboot 整合websocket 站内消息 单独信息发送 信息群发 统计连接数</a>
+              <Breadcrumb>
+                <Breadcrumb-item href="/index">
+                  <Icon type="ios-home-outline"></Icon> 首页
+                </Breadcrumb-item>
+                <Breadcrumb-item style="color:#2d8cf0">
+                  {{ bdetail.title }}
+                </Breadcrumb-item>
+              </Breadcrumb>
             </div>
               <h1 style="text-align: center">{{ bdetail.title}}</h1>
             <div class="blog-data">
@@ -16,8 +23,8 @@
               <span><Icon type="ios-eye" style="color:#01AAED;font-size: 15px"></Icon>&nbsp;阅读({{ bdetail.readcount }})&nbsp;</span>
               <span><Icon type="ios-chatboxes" style="font-size: 13px;color:#67c23a;"></Icon>&nbsp;评论({{ bdetail.comment }})</span>
             </div>
-            摘要：
-            <span>{{ bdetail.resume }}</span>
+            <!--摘要：-->
+            <!--<span>{{ bdetail.resume }}</span>-->
             <div v-html="bdetail.content"></div>
           </el-card>
           <div>
@@ -42,7 +49,7 @@
                 <span>最新文章</span>
               </div>
               <div v-for="o in blognew" :key="o" style="cursor:pointer">
-                <div style="margin-top: 8px">
+                <div style="margin-top: 8px"  @click="aa()">
                   <router-link
                     :to="{path:'blog',query: {bid: o.id}}">{{ o.title  }}</router-link>
                 </div>
@@ -119,6 +126,9 @@
       this.condition.bid = this.$route.query.bid
     },
   methods: {
+      aa () {
+        location.reload()
+      },
     newblog () {
       request.post('/blog/newblog').then((res) => {
         if (res.data.code === 20) {
@@ -129,7 +139,6 @@
     youqing () {
       request.post('/youqing/index').then((res) => {
         if (res.data.code === 20) {
-        console.log(res.data.content)
         this.youqings = res.data.content
       }
     })
@@ -165,6 +174,11 @@
     text-align: center;
     margin-top: 5px;
     margin-bottom: 15px;
+  }
+  pre {
+    background: #f6f6f6;
+    color: #657b83;
+    -webkit-text-size-adjust: none;
   }
 </style>
 

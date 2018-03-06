@@ -10,6 +10,7 @@
     <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
     <result column="readcount" jdbcType="INTEGER" property="readcount" />
     <result column="comment" jdbcType="INTEGER" property="comment" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.suyu.domain.Blog">
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
@@ -114,7 +115,7 @@
     </if>
   </select>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ResultMapWithBLOBs">
-    select 
+    select
     <include refid="Base_Column_List" />
     ,
     <include refid="Blob_Column_List" />
@@ -132,16 +133,17 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.suyu.domain.Blog">
-    insert into blog (id, title, resume, 
-      tid, createTime, updatetime, 
+    insert into blog (id, title, resume,
+      tid, createTime, updatetime,
       readcount, comment, content
       )
-    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{resume,jdbcType=VARCHAR}, 
-      #{tid,jdbcType=TINYINT}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+    values (#{id,jdbcType=BIGINT}, #{title,jdbcType=VARCHAR}, #{resume,jdbcType=VARCHAR},
+      #{tid,jdbcType=TINYINT}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP},
       #{readcount,jdbcType=INTEGER}, #{comment,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.suyu.domain.Blog">
+  <insert id="insertSelective"  parameterType="com.suyu.domain.Blog" useGeneratedKeys="true"
+          keyProperty="id">
     insert into blog
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">

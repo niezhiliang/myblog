@@ -4,10 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.suyu.domain.Blog;
 import com.suyu.domain.Label;
 import com.suyu.domain.LabelBlog;
-import com.suyu.entity.BlogParams;
-import com.suyu.entity.BlogPublic;
-import com.suyu.entity.InfoCode;
-import com.suyu.entity.RestInfo;
+import com.suyu.entity.*;
 import com.suyu.service.BlogLabelService;
 import com.suyu.service.BlogService;
 import com.suyu.service.LabelService;
@@ -93,4 +90,15 @@ public class BlogController {
         }
         return JSON.toJSONString(restInfo);
     }
+
+    @RequestMapping(value = "/public")
+    public String publicBlog(@RequestBody BlogPublicEntity blogPublic) {
+        RestInfo restInfo = new RestInfo();
+        boolean bool = blogService.publicBlog(blogPublic);
+        if (bool) {
+            restInfo.setCode(InfoCode.SUCCESS);
+        }
+        return JSON.toJSONString(restInfo);
+    }
+
 }

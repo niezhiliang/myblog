@@ -2,6 +2,7 @@ package com.suyu.service;
 
 import com.suyu.domain.Blog;
 import com.suyu.entity.BlogParams;
+import com.suyu.entity.BlogPublicEntity;
 import com.suyu.entity.BlogResult;
 
 import java.util.List;
@@ -21,4 +22,6 @@ public interface BlogService {
     public List<Blog> indexBlog(BlogParams blogParams);
 
     public List<Blog> getBlogById(Long bid);
+
+    public boolean publicBlog(BlogPublicEntity blogPublicEntity);
 }
