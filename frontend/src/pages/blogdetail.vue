@@ -95,6 +95,7 @@
 <script>
   import vheader from '@/pages/head'
   import request from '@/components/request'
+  import sider from '@/pages/sider'
   export default {
     name: 'HelloWorld',
     data () {
@@ -159,7 +160,7 @@
     })
     }
     },
-    components: { vheader }
+    components: { vheader ,sider }
   }
 </script>
 

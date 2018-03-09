@@ -25,7 +25,7 @@ export default {
     let token = vc.get('userInfo')? JSON.parse(vc.get('userInfo')).token:''
     return axios({
       method: 'post',
-      baseURL: 'http://localhost:8080',
+      baseURL: 'http://120.78.149.247:8080/',
       url,
       data: data,
       timeout: 10000,

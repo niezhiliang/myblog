@@ -6,6 +6,9 @@ import Head from '@/pages/head'
 import Login from '@/pages/login'
 import Regist from '@/pages/regist'
 import Blog from '@/pages/blogdetail'
+import Sider from '@/pages/sider'
+import Blogresume from '@/pages/blogresume'
+import HotBlog from '@/pages/hotblog'
 
 Vue.use(Router)
 
@@ -15,6 +18,11 @@ export default new Router({
       path: '/',
       component: App,
       children: [
+        {
+          path: '/',
+          component: Index,
+          name: 'home'
+        },
         {
           path: '/index',
           component: Index,
@@ -26,19 +34,24 @@ export default new Router({
           name: 'head'
         },
         {
-          path: '/login',
-          component: Login,
-          name: 'login'
+          path: '/blogresume',
+          component: Blogresume,
+          name: 'blogresume'
         },
         {
-          path: '/register',
-          component: Regist,
-          name: 'register'
+          path: '/hotblog',
+          component: HotBlog,
+          name: 'hotblog'
         },
         {
           path: '/blog',
           component: Blog,
           name: 'blog'
+        },
+        {
+          path: '/sider',
+          component: Sider,
+          name: 'sider'
         }
       ]
     }
