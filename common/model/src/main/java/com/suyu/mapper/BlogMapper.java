@@ -3,6 +3,8 @@ package com.suyu.mapper;
 import com.suyu.domain.Blog;
 import com.suyu.domain.BlogExample;
 import java.util.List;
+
+import com.suyu.entity.WebData;
 import org.apache.ibatis.annotations.Param;
 
 public interface BlogMapper {
@@ -33,4 +35,6 @@ public interface BlogMapper {
     int updateByPrimaryKeyWithBLOBs(Blog record);
 
     int updateByPrimaryKey(Blog record);
+
+    WebData selectdata();
 }

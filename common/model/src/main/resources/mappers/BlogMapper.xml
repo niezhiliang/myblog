@@ -327,4 +327,8 @@
       comment = #{comment,jdbcType=INTEGER}
     where id = #{id,jdbcType=BIGINT}
   </update>
+
+  <select id="selectdata" resultType="com.suyu.entity.WebData">
+    select count(*) 'blogcount', sum(readcount) 'readcount',sum(comment) 'commentcount' from blog
+  </select>
 </mapper>

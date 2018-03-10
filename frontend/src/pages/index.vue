@@ -12,107 +12,23 @@
               </el-carousel-item>
             </el-carousel>
           </template>
+          <!-- 热门排行 -->
           <hotblog></hotblog>
-          <!--<el-card class="box-card add-padding" :key="123112312">-->
-            <!--<div slot="header" class="clearfix">-->
-              <!--<span>热门排行</span>-->
-            <!--</div>-->
-            <!--<div v-for="blog in bloghot"  class="text item" style="cursor:pointer">-->
-              <!--<Icon type="ios-infinite-outline"></Icon>-->
-              <!--<router-link-->
-                <!--:to="{path:'blog',query: {bid: blog.id}}">{{ blog.title  }}</router-link>-->
-              <!--<div style="float: right;margin-right: 30px">-->
-                <!--<b>阅读:</b><i>{{ blog.readcount }}</i>-->
-              <!--</div>-->
-            <!--</div>-->
-          <!--</el-card >-->
           <!-- 文章简介卡片 -->
-          <resume></resume>
-          <!--<el-card  :key=12312312312 class="box-card card-border" style="margin-top: 10px;padding-top: 10px" v-for="b in blogs">-->
-            <!--<div style="margin-top: -10px">-->
-              <!--<span class="qing-category">技术</span>-->
-              <!--<i class="el-icon-caret-right icon-size" ></i>-->
-              <!--<router-link-->
-                <!--:to="{path:'blog',query: {bid: b.blog.id}}" style="color: cornflowerblue;font-size: 16px">{{ b.blog.title  }}</router-link>-->
-            <!--</div>-->
-            <!--<div class="qing-list-hint">-->
-              <!--<span><Icon type="person" style="font-size: 13px;color:#01AAED"></Icon> 木槿心 </span>-->
-              <!--<span><Icon type="clock" style="color: darkgoldenrod;"></Icon>&nbsp; {{ b.blog.createtime | time }}&nbsp;</span>-->
-              <!--<span><Icon type="ios-eye" style="color:#01AAED;font-size: 15px"></Icon>&nbsp;阅读({{ b.blog.readcount }})&nbsp;</span>-->
-              <!--<span><Icon type="ios-chatboxes" style="font-size: 13px;color:#67c23a;"></Icon>&nbsp;评论( {{ b.blog.comment }})</span>-->
-            <!--</div>-->
-            <!--<p class="qing-list-content">{{ b.blog.resume }}</p>-->
-            <!--<div class="qing-list-foot">-->
-              <!--<Icon type="ios-pricetags" style="margin-right: 5px"></Icon>-->
-              <!--<span class="am-radius" v-for="l in b.types">#{{ l }}</span>-->
-              <!--<router-link-->
-                <!--:to="{path:'blog',query: {bid: b.blog.id}}" class="qing-read-more">阅读全文&gt;&gt;</router-link>-->
-             <!--</div>-->
-          <!--</el-card>-->
+          <resume ref="bresume" :psno="condition.pageNo"></resume>
           <!-- 分页 -->
             <el-pagination
               background
               layout="prev, pager, next"
               prev-text="上一页"
               next-text="下一页"
+
+              @current-change="pagemethod"
               :total="60" style="margin-top: 10px;background-color:#fff;padding: 10px">
             </el-pagination>
 
         </el-aside>
         <el-main>
-          <!--<div class="top-main">-->
-            <!--&lt;!&ndash; 标签 &ndash;&gt;-->
-            <!--<el-card class="box-card" style="padding:10px 15px ">-->
-              <!--<div slot="header" class="clearfix">-->
-                <!--<span>文章分类</span>-->
-              <!--</div>-->
-              <!--<div v-for="o in labels" :key="o" style="cursor:pointer;display: inline">-->
-                <!--<Tag checkable color="blue">{{ o.labelname}}</Tag>-->
-              <!--</div>-->
-            <!--</el-card>-->
-            <!--&lt;!&ndash;最新文章&ndash;&gt;-->
-            <!--<el-card class="box-card" style="padding:10px 15px ">-->
-              <!--<div slot="header" class="clearfix">-->
-                <!--<span>最新文章</span>-->
-              <!--</div>-->
-              <!--<div v-for="o in blognew" :key="o" style="cursor:pointer">-->
-                <!--<div style="margin-top: 8px">-->
-                  <!--<router-link-->
-                    <!--:to="{path:'blog',query: {bid: o.id}}">{{ o.title  }}</router-link>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</el-card>-->
-            <!--&lt;!&ndash;标签云&ndash;&gt;-->
-            <!--<el-card class="box-card" style="padding:10px 15px ">-->
-              <!--<div slot="header" class="clearfix">-->
-                <!--<span>标签云</span>-->
-              <!--</div>-->
-              <!--<div v-for="o in 4" :key="o" style="cursor:pointer">-->
-                <!--<div style="display: block">{{ 标签 +o}}</div>-->
-              <!--</div>-->
-            <!--</el-card>-->
-            <!--&lt;!&ndash;联系我&ndash;&gt;-->
-            <!--<el-card class="box-card" style="padding:10px 15px ">-->
-              <!--<div slot="header" class="clearfix">-->
-                <!--<span>联系我</span>-->
-              <!--</div>-->
-              <!--<div class="qing-panel-body">-->
-                <!--<p class="am-text-left">邮箱：nzlsgg@163.com</p>-->
-                <!--<p class="am-text-left">QQ交流群：1234567890</p>-->
-              <!--</div>-->
-            <!--</el-card>-->
-            <!--&lt;!&ndash;友情链接&ndash;&gt;-->
-            <!--<el-card class="box-card" style="padding:10px 15px ">-->
-              <!--<div slot="header" class="clearfix">-->
-                <!--<span>友情链接</span>-->
-              <!--</div>-->
-              <!--<div v-for="o in youqings" :key="o" style="cursor:pointer">-->
-                <!--<div style="margin-top: 8px">-->
-                  <!--<a class="qing-item-link" :href="o.url">{{ o.name }}</a>-->
-                <!--</div>-->
-              <!--</div>-->
-            <!--</el-card>-->
-          <!--</div>-->
           <sider></sider>
         </el-main>
       </el-container>
@@ -129,48 +45,29 @@
   import sider from '@/pages/sider'
   import resume from '@/pages/blogresume'
   import hotblog from '@/pages/hotblog'
+ // import footer from '@/pages/footer.vue'
 
   export default {
     name: 'Test',
     data () {
       return {
-        blognew: [],
         imgs: [],
-        youqings: [],
-        blogs: [],
-        labels: [],
-        labeltype: {
-          0 : "blue",
-          1 : "green",
-          2 : "red",
-          3 : "yellow"
-        },
         condition : {
           pageSize : 6,
           pageNo: 1,
           title: null
-        }
-
+        },
       }
     },
     created () {
-      this.newblog(),
-      this.youqing(),
-      this.getimgs(),
-      this.getlabels()
+      this.getimgs()
     },
     mounted () {
     },
     methods: {
-      open () {
-        this.$message('登录成功')
-      },
-      newblog () {
-        request.post('/blog/newblog').then((res) => {
-          if (res.data.code === 20) {
-            this.blognew = res.data.content
-          }
-        })
+      pagemethod: function(val) {
+       this.condition.pageNo = val
+        this.$refs.bresume.getparams(this.condition.pageNo)
       },
       getimgs () {
         request.post('/img/get').then((res) => {
@@ -180,23 +77,8 @@
           }
         })
       },
-      youqing () {
-        request.post('/youqing/index').then((res) => {
-          if (res.data.code === 20) {
-            console.log(res.data.content)
-            this.youqings = res.data.content
-          }
-        })
-      },
-      getlabels () {
-        request.post('/label/all').then((res) => {
-          if (res.data.code === 20) {
-            this.labels = res.data.content
-          }
-        })
-      }
     },
-    components: { vheader ,sider ,resume ,hotblog }
+    components: { vheader ,sider ,resume ,hotblog  }
   }
 </script>
 

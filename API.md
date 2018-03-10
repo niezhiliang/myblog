@@ -63,3 +63,36 @@
     {
         null
     }
+    
+#### 博客浏览量自增
+
+#### url : 127.0.0.1:8080/blog/addread
+
+
+#### 所需data
+
+    {
+        id: '文章id'
+    }
+    
+#### 博客评论排行
+
+#### url : 127.0.0.1:8080/blog/orderbycomment
+
+
+#### 所需data
+
+   {
+       null
+   } 
+    
+#### 博客数据
+
+#### url : 127.0.0.1:8080/blog/webdata
+
+
+#### 所需data
+
+   {
+       null
+   } 

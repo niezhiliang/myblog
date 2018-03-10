@@ -101,4 +101,36 @@ public class BlogController {
         return JSON.toJSONString(restInfo);
     }
 
+    @RequestMapping(value ="addread")
+    public String addReadCount(@RequestBody Blog blog) {
+        RestInfo restInfo = new RestInfo();
+        if (blog.getId() == null) {
+            restInfo.setMessage("文章ID不能为空");
+        } else {
+            blogService.addReadCount(blog.getId());
+            restInfo.setCode(InfoCode.SUCCESS);
+            restInfo.setMessage("浏览量自增成功");
+        }
+        return JSON.toJSONString(restInfo);
+    }
+
+    @RequestMapping(value = "orderbycomment")
+    public String orderByComment() {
+        RestInfo restInfo = new RestInfo();
+        List<Blog> blogs = blogService.orderByComment();
+        if (!blogs.isEmpty()) {
+            restInfo.setCode(InfoCode.SUCCESS);
+            restInfo.setContent(blogs);
+        }
+        return JSON.toJSONString(restInfo);
+    }
+
+    @RequestMapping(value = "webdata")
+    public String webData() {
+        RestInfo restInfo = new RestInfo();
+        WebData webData = blogService.selectdata();
+        restInfo.setContent(webData);
+        restInfo.setCode(InfoCode.SUCCESS);
+        return JSON.toJSONString(restInfo);
+    }
 }

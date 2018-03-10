@@ -37,7 +37,7 @@
           <!--</div>-->
         <!--</div>-->
         <div style="margin-top: 15px;float: left;margin-left: 360px">
-          <el-input placeholder="请输入内容" v-model="input5" class="input-with-select">
+          <el-input placeholder="请输入内容"  class="input-with-select">
             <el-button slot="append" icon="el-icon-search"></el-button>
           </el-input>
         </div>

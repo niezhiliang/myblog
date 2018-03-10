@@ -4,6 +4,7 @@ import com.suyu.domain.Blog;
 import com.suyu.entity.BlogParams;
 import com.suyu.entity.BlogPublicEntity;
 import com.suyu.entity.BlogResult;
+import com.suyu.entity.WebData;
 
 import java.util.List;
 
@@ -24,4 +25,11 @@ public interface BlogService {
     public List<Blog> getBlogById(Long bid);
 
     public boolean publicBlog(BlogPublicEntity blogPublicEntity);
+
+    public int addReadCount(Long bid);
+
+    public List<Blog> orderByComment();
+
+    WebData selectdata();
+
 }

@@ -6,6 +6,7 @@ import com.suyu.domain.LabelBlog;
 import com.suyu.entity.BlogParams;
 import com.suyu.entity.BlogPublicEntity;
 import com.suyu.entity.BlogResult;
+import com.suyu.entity.WebData;
 import com.suyu.mapper.BlogMapper;
 import com.suyu.service.BlogLabelService;
 import com.suyu.service.BlogService;
@@ -44,7 +45,7 @@ public class BlogServiciImpl implements BlogService {
     @Override
     public List<Blog> getNewOrder() {
         BlogExample blogExample = new BlogExample();
-        blogExample.setPageSize(5);
+        blogExample.setPageSize(6);
         blogExample.setStartRow(0);
         blogExample.setOrderByClause("createTime desc");
         return blogMapper.selectByExample(blogExample);
@@ -93,5 +94,33 @@ public class BlogServiciImpl implements BlogService {
             }
         }
         return false;
+    }
+
+    @Override
+    public int addReadCount(Long bid) {
+        BlogExample blogExample = new BlogExample();
+        blogExample.createCriteria().andIdEqualTo(bid);
+        List<Blog> blogs  = blogMapper.selectByExample(blogExample);
+        if (!blogs.isEmpty()) {
+            Blog blog = blogs.get(0);
+            blog.setReadcount(blog.getReadcount()+1);
+            blogMapper.updateByPrimaryKeySelective(blog);
+        }
+        return 0;
+    }
+
+    @Override
+    public List<Blog> orderByComment() {
+        BlogExample blogExample = new BlogExample();
+        blogExample.setPageSize(6);
+        blogExample.setStartRow(0);
+        blogExample.setOrderByClause("comment desc");
+        return blogMapper.selectByExample(blogExample);
+    }
+
+    @Override
+    public WebData selectdata() {
+
+        return blogMapper.selectdata();
     }
 }

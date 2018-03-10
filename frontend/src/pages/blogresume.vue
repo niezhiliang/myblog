@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-card  :key=12312312312 class="box-card card-border" style="margin-top: 10px;padding-top: 10px" v-for="b in blogs">
+    <el-card  :key=b.id class="box-card card-border" style="margin-top: 10px;padding-top: 10px" v-for="b in blogs">
       <div style="margin-top: -10px">
         <span class="qing-category">技术</span>
         <i class="el-icon-caret-right icon-size" ></i>
@@ -30,6 +30,7 @@
 
 
   export default {
+
     data () {
       return {
         blogs: [],
@@ -40,8 +41,12 @@
       }
       }
     },
+    props:[
+      'psno'
+    ],
     created () {
       this.getblogs()
+      console.log(this.psno)
     },
     mounted () {
     },
@@ -53,6 +58,10 @@
           this.blogs = res.data.content
         }
       })
+      },
+      getparams : function (params) {
+        this.condition.pageNo = params
+        this.getblogs()
       }
     }
   }

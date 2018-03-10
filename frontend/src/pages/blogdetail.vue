@@ -27,67 +27,14 @@
             <!--<span>{{ bdetail.resume }}</span>-->
             <div v-html="bdetail.content"></div>
           </el-card>
-          <div>
-
-          </div>
         </el-aside>
-
         <el-main>
-          <div class="top-main">
-            <!-- 标签 -->
-            <el-card class="box-card" style="padding:10px 15px ">
-              <div slot="header" class="clearfix">
-                <span>文章分类</span>
-              </div>
-              <div v-for="o in labels" :key="o" style="cursor:pointer;display: inline">
-                <Tag checkable color="blue">{{ o.labelname}}</Tag>
-              </div>
-            </el-card>
-            <!--最新文章-->
-            <el-card class="box-card" style="padding:10px 15px ">
-              <div slot="header" class="clearfix">
-                <span>最新文章</span>
-              </div>
-              <div v-for="o in blognew" :key="o" style="cursor:pointer">
-                <div style="margin-top: 8px"  @click="aa()">
-                  <router-link
-                    :to="{path:'blog',query: {bid: o.id}}">{{ o.title  }}</router-link>
-                </div>
-              </div>
-            </el-card>
-            <!--标签云-->
-            <el-card class="box-card" style="padding:10px 15px ">
-              <div slot="header" class="clearfix">
-                <span>标签云</span>
-              </div>
-              <div v-for="o in 4" :key="o" style="cursor:pointer">
-                <div style="display: block">{{ 标签 +o}}</div>
-              </div>
-            </el-card>
-            <!--联系我-->
-            <el-card class="box-card" style="padding:10px 15px ">
-              <div slot="header" class="clearfix">
-                <span>联系我</span>
-              </div>
-              <div class="qing-panel-body">
-                <p class="am-text-left">邮箱：nzlsgg@163.com</p>
-                <p class="am-text-left">QQ交流群：1234567890</p>
-              </div>
-            </el-card>
-            <!--友情链接-->
-            <el-card class="box-card" style="padding:10px 15px ">
-              <div slot="header" class="clearfix">
-                <span>友情链接</span>
-              </div>
-              <div v-for="o in youqings" :key="o" style="cursor:pointer">
-                <div style="margin-top: 8px">
-                  <a class="qing-item-link" :href="o.url">{{ o.name }}</a>
-                </div>
-              </div>
-            </el-card>
-          </div>
+          <sider v-on:child-say="sonsay"></sider>
         </el-main>
       </el-container>
+    </div>
+    <div>
+      <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer>
     </div>
   </div>
 </template>
@@ -96,6 +43,7 @@
   import vheader from '@/pages/head'
   import request from '@/components/request'
   import sider from '@/pages/sider'
+ // import footer from '@/pages/footer'
   export default {
     name: 'HelloWorld',
     data () {
@@ -110,7 +58,7 @@
           3 : "yellow"
         },
         condition:{
-          bid: 1
+          bid: 2
         },
         bdetail:{
 
@@ -118,49 +66,25 @@
       }
   },
     created () {
-        this.newblog(),
-        this.youqing(),
-        this.getlabels(),
-        this.getdetail()
+      this.condition.bid = this.$route.query.bid
+      this.getdetail()
     },
     mounted () {
-      this.condition.bid = this.$route.query.bid
     },
-  methods: {
-      aa () {
-        location.reload()
+    methods: {
+      sonsay: function (bid) {
+        this.condition.bid = bid
+        this.getdetail()
       },
-    newblog () {
-      request.post('/blog/newblog').then((res) => {
-        if (res.data.code === 20) {
-        this.blognew = res.data.content
+      getdetail () {
+        request.post('/blog/detail',this.condition).then((res) => {
+          if (res.data.code === 20) {
+          this.bdetail = res.data.content
+        }
+      })
       }
-    })
-    },
-    youqing () {
-      request.post('/youqing/index').then((res) => {
-        if (res.data.code === 20) {
-        this.youqings = res.data.content
-      }
-    })
-    },
-    getlabels () {
-      request.post('/label/all').then((res) => {
-        if (res.data.code === 20) {
-        this.labels = res.data.content
-      }
-    })
-    },
-    getdetail () {
-      request.post('/blog/detail',this.condition).then((res) => {
-        if (res.data.code === 20) {
-          console.log(res.data)
-        this.bdetail = res.data.content
-      }
-    })
-    }
-    },
-    components: { vheader ,sider }
+     },
+    components: { vheader ,sider  }
   }
 </script>
 

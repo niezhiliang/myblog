@@ -9,7 +9,7 @@
         <router-link
           :to="{path:'blog',query: {bid: blog.id}}">{{ blog.title  }}</router-link>
         <div style="float: right;margin-right: 30px">
-          <b>阅读:</b><i>{{ blog.readcount }}</i>
+          <i><span style="color: #4f4f4f">{{ blog.readcount }}</span><b style="color: #788087;"> 阅读</b></i>
         </div>
       </div>
     </el-card >
