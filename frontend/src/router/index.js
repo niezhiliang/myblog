@@ -3,14 +3,13 @@ import Router from 'vue-router'
 import Index from '@/pages/index'
 import App from '@/App'
 import Head from '@/pages/head'
-import Login from '@/pages/login'
-import Regist from '@/pages/regist'
 import Blog from '@/pages/blogdetail'
 import Sider from '@/pages/sider'
 import Blogresume from '@/pages/blogresume'
 import HotBlog from '@/pages/hotblog'
 import Footer from '@/pages/footer'
 import Father from '@/pages/parent'
+import Main from '@/pages/indexmain'
 
 Vue.use(Router)
 
@@ -22,12 +21,12 @@ export default new Router({
       children: [
         {
           path: '/',
-          component: Index,
+          component: Main,
           name: 'home'
         },
         {
           path: '/index',
-          component: Index,
+          component: Main,
           name: 'index'
         },
         {
@@ -64,6 +63,11 @@ export default new Router({
           path: '/father',
           component: Father,
           name: 'father'
+        },
+        {
+          path: '/main',
+          component: Main,
+          name: 'main'
         }
       ]
     }
