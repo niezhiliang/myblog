@@ -1,0 +1,15 @@
+server:
+  port: 8989
+  context-path: /api
+spring:
+    devtools:
+      restart:
+        exclude:  static/**,public/**
+        enabled:  true
+
+
+##jwt配置
+jwt:
+  header: Authorization
+  secret: mySecret
+  expiration: 604800
