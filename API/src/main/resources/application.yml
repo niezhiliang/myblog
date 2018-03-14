@@ -41,14 +41,7 @@ suyu:
 #阿里oss配置
   aliyun:
     oss:
-<<<<<<< HEAD
       accessKeyId: "xx"
       accessKeySecret: "xxx"
       endpoint: "http://oss-cn-qingdao.aliyuncs.com"
       Bucket: "huluwa-pdf"
-=======
-      accessKeyId: 
-      accessKeySecret: 
-      endpoint: "http://suyublog.oss-cn-hangzhou.aliyuncs.com"
-      Bucket: "suyublog"
->>>>>>> d40e219a791587cb3d8bd3e3e86f28c69119fd39
