@@ -32,4 +32,9 @@ public class LabelServerImpl implements LabelService {
         labelExample.createCriteria().andIdEqualTo(lid);
         return labelMapper.selectByExample(labelExample);
     }
+
+    @Override
+    public List<Label> selectLabelName(Long bid) {
+        return labelMapper.selectLabelName(bid);
+    }
 }

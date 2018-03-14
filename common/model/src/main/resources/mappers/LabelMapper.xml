@@ -209,4 +209,10 @@
       state = #{state,jdbcType=TINYINT}
     where id = #{id,jdbcType=BIGINT}
   </update>
+  <select id="selectLabelName" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List"/>
+    from label l inner join label_blog b on l.id = b.lid
+    where b.bid = ${bid}
+  </select>
 </mapper>

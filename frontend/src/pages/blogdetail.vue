@@ -1,8 +1,8 @@
 <template>
   <div>
     <vheader :activeIndex="1"></vheader>
-    <Row>
-      <i-col>
+    <Row type="flex" justify="center" align="top" class="code-row-bg" :style="{maxWidth:'1600px',margin: '0 auto'}">
+      <i-col :xs="{ span: 22, offset: 1 }" :sm="{span: 22, offset: 1}" :md="{span: 15}"  :lg="{span: 13}" :style="{marginRight:'30px'}">
         <!-- 页面左侧模块-->
             <el-card class="box-card">
               <div slot="header" class="clearfix">
@@ -24,10 +24,10 @@
               </div>
               <div v-html="bdetail.content"></div>
             </el-card>
-          <i-col :xs="{ span: 20, offset: 2 }" :sm="{span: 20, offset: 2}" :md="{span: 7}"  :lg="{span: 4}">
+      </i-col>
+          <i-col :xs="{ span: 22 }" :sm="{span: 22}" :md="{span: 7}"  :lg="{span: 5}">
             <sider v-on:child-say="sonsay"></sider>
           </i-col>
-      </i-col>
     </Row>
     <div>
       <Footer class="layout-footer-center">2011-2016 &copy; TalkingData</Footer>

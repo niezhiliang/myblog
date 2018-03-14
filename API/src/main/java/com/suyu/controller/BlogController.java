@@ -5,6 +5,7 @@ import com.suyu.domain.Blog;
 import com.suyu.domain.Label;
 import com.suyu.domain.LabelBlog;
 import com.suyu.entity.*;
+import com.suyu.server.SocketServer;
 import com.suyu.service.BlogLabelService;
 import com.suyu.service.BlogService;
 import com.suyu.service.LabelService;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Author Suyu
@@ -58,22 +61,31 @@ public class BlogController {
     @RequestMapping(value = "index")
     public String blogIndex(@RequestBody BlogParams blogParams) {
         RestInfo restInfo = new RestInfo();
-        List<Blog> blogs = blogService.indexBlog(blogParams);
-        List<BlogPublic> blogPublicList = new ArrayList<BlogPublic>();
-        for (Blog blog : blogs) {
-            BlogPublic blogPublic = new BlogPublic();
-            blogPublic.setBlog(blog);
-            List<LabelBlog> labelBlogs = blogLabelService.selectByBlogId(blog.getId());
-            List<String> types = new ArrayList<String>();
-            for (LabelBlog label : labelBlogs) {
-                List<Label> labels = labelService.getBlogByLabelId(label.getLid());
-                types.add(labels.get(0).getLabelname());
-            }
-            blogPublic.setTypes(types);
-            blogPublicList.add(blogPublic);
-        }
+        BlogPublic blogPublic = new BlogPublic();
+        blogPublic.setId(blogParams.getBid());
+        blogPublic.setPageno(blogParams.getPageNo());
+        blogPublic.setPagesize(blogParams.getPageSize());
+        blogPublic.setTitle(blogParams.getTitle());
+        List<BlogPublic> blogs = blogService.selectblogs(blogPublic);
+//        List<BlogPublic> blogPublicList = new ArrayList<BlogPublic>();
+//        for (Blog blog : blogs) {
+//            BlogPublic blogPublic = new BlogPublic();
+//            blogPublic.setBlog(blog);
+//            List<LabelBlog> labelBlogs = blogLabelService.selectByBlogId(blog.getId());
+//            List<String> types = new ArrayList<String>();
+//            for (LabelBlog label : labelBlogs) {
+//                List<Label> labels = labelService.getBlogByLabelId(label.getLid());
+//                types.add(labels.get(0).getLabelname());
+//            }
+            //blogPublic.setTypes(types);
+           // blogPublicList.add(blogPublic);
+      //  }
+        Integer count = blogService.getTotal(blogParams.getTitle());
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("blogs",blogs);
+        map.put("total",count);
         restInfo.setCode(InfoCode.SUCCESS);
-        restInfo.setContent(blogPublicList);
+        restInfo.setContent(map);
         return JSON.toJSONString(restInfo);
     }
 
@@ -129,6 +141,9 @@ public class BlogController {
     public String webData() {
         RestInfo restInfo = new RestInfo();
         WebData webData = blogService.selectdata();
+        Integer person = SocketServer.getOnlineNum();
+        System.out.println(SocketServer.getOnlineUsers());
+        webData.setOnlinecount(person);
         restInfo.setContent(webData);
         restInfo.setCode(InfoCode.SUCCESS);
         return JSON.toJSONString(restInfo);

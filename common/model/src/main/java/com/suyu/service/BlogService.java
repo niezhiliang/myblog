@@ -1,10 +1,7 @@
 package com.suyu.service;
 
 import com.suyu.domain.Blog;
-import com.suyu.entity.BlogParams;
-import com.suyu.entity.BlogPublicEntity;
-import com.suyu.entity.BlogResult;
-import com.suyu.entity.WebData;
+import com.suyu.entity.*;
 
 import java.util.List;
 
@@ -30,6 +27,10 @@ public interface BlogService {
 
     public List<Blog> orderByComment();
 
-    WebData selectdata();
+    public WebData selectdata();
+
+    public Integer getTotal(String title);
+
+    public List<BlogPublic> selectblogs(BlogPublic  blogPublic);
 
 }

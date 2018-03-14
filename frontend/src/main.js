@@ -9,6 +9,7 @@ import store from './store'
 import moment from 'moment'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
+import vc from 'vue-cookie'
 
 Vue.filter('time', function (value, formatString) {
   formatString = formatString || 'YYYY-MM-DD HH:mm'

@@ -10,6 +10,7 @@ import HotBlog from '@/pages/hotblog'
 import Footer from '@/pages/footer'
 import Father from '@/pages/parent'
 import Main from '@/pages/indexmain'
+import Qrcode from '@/pages/qrcode'
 
 Vue.use(Router)
 
@@ -60,14 +61,14 @@ export default new Router({
           name: 'sider'
         },
         {
-          path: '/father',
-          component: Father,
-          name: 'father'
-        },
-        {
           path: '/main',
           component: Main,
           name: 'main'
+        },
+        {
+          path: '/qrcode',
+          component: Qrcode,
+          name: 'qrcode'
         }
       ]
     }

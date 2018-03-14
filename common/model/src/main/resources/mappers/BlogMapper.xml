@@ -331,4 +331,24 @@
   <select id="selectdata" resultType="com.suyu.entity.WebData">
     select count(*) 'blogcount', sum(readcount) 'readcount',sum(comment) 'commentcount' from blog
   </select>
+
+  <select id="getTotal" resultType="java.lang.Integer" parameterType="java.lang.String">
+    select count(*) from blog
+    <where>
+      <if test="title != null">
+        title like  '%${title}%'
+      </if>
+    </where>
+  </select>
+  <select id="selectblogs" parameterType="com.suyu.entity.BlogPublic" resultType="com.suyu.entity.BlogPublic">
+    select b.id 'id',b.title 'title', b.resume 'resume',b.content 'content',
+    b.createTime 'createTime',b.readcount 'readcount',b.comment 'comment',
+    t.blogType from blog b left join type t on b.tid = t.id
+    <where>
+      <if test="title != null">
+          title like '%${title}%'
+      </if>
+    </where>
+    limit ${pageno},${pagesize}
+  </select>
 </mapper>

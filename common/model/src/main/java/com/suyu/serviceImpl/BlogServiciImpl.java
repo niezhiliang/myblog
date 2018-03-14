@@ -2,14 +2,13 @@ package com.suyu.serviceImpl;
 
 import com.suyu.domain.Blog;
 import com.suyu.domain.BlogExample;
+import com.suyu.domain.Label;
 import com.suyu.domain.LabelBlog;
-import com.suyu.entity.BlogParams;
-import com.suyu.entity.BlogPublicEntity;
-import com.suyu.entity.BlogResult;
-import com.suyu.entity.WebData;
+import com.suyu.entity.*;
 import com.suyu.mapper.BlogMapper;
 import com.suyu.service.BlogLabelService;
 import com.suyu.service.BlogService;
+import com.suyu.service.LabelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,6 +27,11 @@ public class BlogServiciImpl implements BlogService {
     private BlogMapper blogMapper;
     @Autowired
     private BlogLabelService blogLabelService;
+
+    @Autowired
+    private LabelService labelService;
+
+
     @Override
     public List<Blog> getHotOrder() {
         BlogExample blogExample = new BlogExample();
@@ -122,5 +126,20 @@ public class BlogServiciImpl implements BlogService {
     public WebData selectdata() {
 
         return blogMapper.selectdata();
+    }
+
+    @Override
+    public Integer getTotal(String title) {
+        return blogMapper.getTotal(title);
+    }
+
+    @Override
+    public List<BlogPublic> selectblogs(BlogPublic blogPublic) {
+        List<BlogPublic> lists = blogMapper.selectblogs(blogPublic);
+        for (BlogPublic blog : lists) {
+            List<Label> labels = labelService.selectLabelName(blog.getId());
+            blog.setTypes(labels);
+        }
+        return lists;
     }
 }

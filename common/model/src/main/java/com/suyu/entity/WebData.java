@@ -16,7 +16,7 @@ public class WebData {
     private Integer commentcount;
 
     /**当前在线**/
-    private Integer onlinecount = 1;
+    private Integer onlinecount = 0;
 
     public Integer getBlogcount() {
         return blogcount;

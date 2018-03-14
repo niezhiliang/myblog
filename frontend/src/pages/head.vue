@@ -31,7 +31,7 @@
           </span>
 
             <el-menu-item class="mar-lef" index="/">首页</el-menu-item>
-            <el-menu-item class="mar-lef" index="/blog">关于本站</el-menu-item>
+            <el-menu-item class="mar-lef" index="/blog">二维码在线</el-menu-item>
             <el-menu-item class="mar-lef" index="3">留言墙</el-menu-item>
           </el-menu>
         </i-col>

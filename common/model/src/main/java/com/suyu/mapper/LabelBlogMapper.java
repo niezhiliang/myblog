@@ -1,5 +1,6 @@
 package com.suyu.mapper;
 
+import com.suyu.domain.Label;
 import com.suyu.domain.LabelBlog;
 import com.suyu.domain.LabelBlogExample;
 import java.util.List;
@@ -27,4 +28,6 @@ public interface LabelBlogMapper {
     int updateByPrimaryKeySelective(LabelBlog record);
 
     int updateByPrimaryKey(LabelBlog record);
+
+    Label selectLabelName(@Param("bid") Long bid);
 }

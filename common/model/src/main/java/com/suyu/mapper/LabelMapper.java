@@ -27,4 +27,7 @@ public interface LabelMapper {
     int updateByPrimaryKeySelective(Label record);
 
     int updateByPrimaryKey(Label record);
+
+     List<Label> selectLabelName(@Param("bid") Long bid);
+
 }

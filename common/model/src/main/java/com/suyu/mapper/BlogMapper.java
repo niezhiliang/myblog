@@ -4,6 +4,7 @@ import com.suyu.domain.Blog;
 import com.suyu.domain.BlogExample;
 import java.util.List;
 
+import com.suyu.entity.BlogPublic;
 import com.suyu.entity.WebData;
 import org.apache.ibatis.annotations.Param;
 
@@ -36,5 +37,9 @@ public interface BlogMapper {
 
     int updateByPrimaryKey(Blog record);
 
+    Integer getTotal(@Param("title") String title);
+
     WebData selectdata();
+
+    List<BlogPublic> selectblogs(BlogPublic blogPublic);
 }

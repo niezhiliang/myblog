@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Sider :style="{backgroundColor:'#fff',minHeight: '100%',minWidth: '100%',padding: '20px',marginTop: '20px'}">
+    <Sider :style="{backgroundColor:'#fff',minHeight: '100%',maxWidth:'300px',minWidth: '100%',padding: '20px',marginTop: '20px'}">
       <Card :style="{padding: '0px'}" :key="1">
         <h5 slot="title" style="text-align: left">标签</h5>
         <Tag checkable color="blue" v-for="(l,index) in labels" :key="index">{{l.labelname}}</Tag>
@@ -9,7 +9,7 @@
       <Card :style="{marginTop: '20px'}" :key="2">
         <h5 slot="title" style="text-align: left">苏雨</h5>
         <Avatar :style="{height:'96px',width: '96px',marginBottom: '20px',marginTop: '20px'}"
-                src="https://avatar.csdn.net/E/4/A/1_qq_38082304.jpg?1520594137" shape="square" icon="person" size="large" />
+                src="https://avatars2.githubusercontent.com/u/33079130?s=460&v=4" shape="square" icon="person" size="large" />
         <div style="float: right;margin-top: 25px;margin-right: 20px" align="right" v-model="webdatas">
           <p><span style="margin-right: 5px;color: #4f4f4f">{{ webdatas.blogcount }}</span><span style="color: #788087;font-size: 14px">文章</span></p>
           <p><span style="margin-right: 5px;color: #4f4f4f">{{ webdatas.commentcount }}</span><span style="color: #788087;font-size: 14px">评论</span></p>

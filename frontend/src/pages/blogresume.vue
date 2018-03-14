@@ -1,26 +1,38 @@
 <template>
   <div>
-    <el-card  :key=b.id class="box-card card-border" style="margin-top: 10px;padding-top: 10px" v-for="b in blogs">
+    <el-card  :key=b.id class="box-card card-border" style="margin-top: 10px;padding-top: 10px"
+              v-for="b in blogs">
       <div style="margin-top: -10px">
-        <span class="qing-category">技术</span>
+        <span class="qing-category">{{ b.blogType }}</span>
         <i class="el-icon-caret-right icon-size" ></i>
         <router-link
-          :to="{path:'blog',query: {bid: b.blog.id}}" style="color: cornflowerblue;font-size: 16px">{{ b.blog.title  }}</router-link>
+          :to="{path:'blog',query: {bid: b.id}}" style="color: cornflowerblue;font-size: 16px">{{ b.title  }}</router-link>
       </div>
       <div class="qing-list-hint">
         <span><Icon type="person" style="font-size: 13px;color:#01AAED"></Icon> 苏雨 </span>
-        <span><Icon type="clock" style="color: darkgoldenrod;"></Icon>&nbsp; {{ b.blog.createtime | time }}&nbsp;</span>
-        <span><Icon type="ios-eye" style="color:#01AAED;font-size: 15px"></Icon>&nbsp;阅读({{ b.blog.readcount }})&nbsp;</span>
-        <span><Icon type="ios-chatboxes" style="font-size: 13px;color:#67c23a;"></Icon>&nbsp;评论( {{ b.blog.comment }})</span>
+        <span><Icon type="clock" style="color: darkgoldenrod;"></Icon>&nbsp; {{ b.createtime | time }}&nbsp;</span>
+        <span><Icon type="ios-eye" style="color:#01AAED;font-size: 15px"></Icon>&nbsp;阅读({{ b.readcount }})&nbsp;</span>
+        <span><Icon type="ios-chatboxes" style="font-size: 13px;color:#67c23a;"></Icon>&nbsp;评论( {{ b.comment }})</span>
       </div>
-      <p class="qing-list-content">{{ b.blog.resume }}</p>
+      <p class="qing-list-content">{{ b.resume }}</p>
       <div class="qing-list-foot">
         <Icon type="ios-pricetags" style="margin-right: 5px"></Icon>
-        <span class="am-radius" v-for="l in b.types">#{{ l }}</span>
+        <span class="am-radius" v-for="l in b.types">#{{ l.labelname }}</span>
         <router-link
-          :to="{path:'blog',query: {bid: b.blog.id}}" class="qing-read-more">阅读全文&gt;&gt;</router-link>
+          :to="{path:'blog',query: {bid: b.id}}" class="qing-read-more">阅读全文&gt;&gt;</router-link>
       </div>
     </el-card>
+    <!-- 分页 -->
+    <el-pagination v-model="condition"
+      background
+      layout="prev, pager, next"
+      prev-text="上一页"
+      next-text="下一页"
+      @current-change="pagemethod"
+      :total="condition.count"
+      :page-size="condition.pageSize"
+      style="margin-top: 10px;background-color:#fff;padding: 10px;">
+    </el-pagination>
   </div>
 </template>
 
@@ -35,32 +47,33 @@
       return {
         blogs: [],
         condition : {
-        pageSize : 6,
+          pageSize : 6,
           pageNo: 1,
-          title: null
-      }
+          title: null,
+          count: 0
+      },
       }
     },
     props:[
       'psno'
     ],
     created () {
-      this.getblogs()
-      console.log(this.psno)
     },
     mounted () {
+      this.getblogs()
     },
     methods: {
       getblogs () {
         request.post('/blog/index',this.condition).then((res) => {
           if (res.data.code === 20) {
-          console.log(res.data.content)
-          this.blogs = res.data.content
+          this.blogs = res.data.content.blogs
+          console.log(this.blogs)
+          this.condition.count = res.data.content.total
         }
       })
       },
-      getparams : function (params) {
-        this.condition.pageNo = params
+      pagemethod: function(val) {
+        this.condition.pageNo = val
         this.getblogs()
       }
     }
