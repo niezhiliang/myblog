@@ -1,12 +1,10 @@
-package cc.huluwa.api.utils;
-
-import java.awt.image.BufferedImage;
-import java.io.*;
-
-import javax.imageio.ImageIO;
+package com.suyu.util;
 
 import net.coobird.thumbnailator.Thumbnails;
 import net.coobird.thumbnailator.geometry.Position;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.*;
 
 public class ThumbnailatorUtils {
 

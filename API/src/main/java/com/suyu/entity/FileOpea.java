@@ -1,4 +1,4 @@
-package cc.huluwa.api.model;
+package com.suyu.entity;
 
 import org.springframework.stereotype.Component;
 

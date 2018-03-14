@@ -1,6 +1,10 @@
-package cc.huluwa.api.utils;
+package com.suyu.util;
 
 
+import javax.imageio.ImageIO;
+import javax.imageio.ImageReadParam;
+import javax.imageio.ImageReader;
+import javax.imageio.stream.ImageInputStream;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.image.AffineTransformOp;
@@ -11,10 +15,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Iterator;
 import java.util.UUID;
-import javax.imageio.ImageIO;
-import javax.imageio.ImageReadParam;
-import javax.imageio.ImageReader;
-import javax.imageio.stream.ImageInputStream;
 
 //图片旋转工具类
 public class ImgUtil {
@@ -37,7 +37,7 @@ public class ImgUtil {
     public ImgUtil(){
 
     }
-    public ImgUtil(int x,int y,int width,int height){
+    public ImgUtil(int x, int y, int width, int height){
         this.x = x ;
         this.y = y ;
         this.width = width ;

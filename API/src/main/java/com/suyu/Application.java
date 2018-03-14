@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Import;
 
 
 @SpringBootApplication(scanBasePackages = {"com.suyu"})
-@Import({com.suyu.Main.class,com.suyu.jwt.JwtMain.class})
+@Import({com.suyu.Main.class,com.suyu.jwt.JwtMain.class,com.suyu.alioss.OssApp.class})
 @MapperScan(basePackages = "com.suyu.mapper")
 public class Application {
 

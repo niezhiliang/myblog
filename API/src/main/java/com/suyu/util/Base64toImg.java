@@ -1,13 +1,10 @@
-package cc.huluwa.api.utils;
+package com.suyu.util;
 
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
 import org.springframework.stereotype.Component;
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
+
+import java.io.*;
 
 @Component
 public class Base64toImg {

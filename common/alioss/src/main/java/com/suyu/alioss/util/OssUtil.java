@@ -7,6 +7,7 @@ import com.suyu.alioss.config.OssParams;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.InputStream;
@@ -17,12 +18,25 @@ public class OssUtil {
     @Autowired
     private OssParams ossParams;
 
+    private static OssParams params = new OssParams();
+
     private  OSSClient ossClient = null;
 
     private  void connect() {
-        ossClient = new OSSClient(ossParams.getEndpoint() , ossParams.getAccessKeyId() ,ossParams.getAccessKeySecret() );
+        if (ossParams == null) {
+            ossParams = params;
+        }
+        System.out.println(ossParams);
+        ossClient = new OSSClient(ossParams.getEndpoint() , ossParams.getAccessKeyId() ,ossParams.getAccessKeySecret());
     }
 
+    private static OssUtil ossUtil;
+
+    @PostConstruct
+    public void init() {
+        ossUtil = this;
+        ossUtil.params = this.ossParams;
+    }
     /**
      *
      OssUtil ossUtil = new OssUtil();
