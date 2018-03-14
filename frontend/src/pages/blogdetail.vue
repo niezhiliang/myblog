@@ -62,10 +62,10 @@
       }
   },
     created () {
-      this.condition.bid = this.$route.query.bid
-      this.getdetail()
     },
     mounted () {
+      this.condition.bid = this.$route.query.bid
+      this.getdetail()
     },
     methods: {
       sonsay: function (bid) {

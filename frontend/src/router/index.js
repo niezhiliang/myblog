@@ -11,6 +11,7 @@ import Footer from '@/pages/footer'
 import Father from '@/pages/parent'
 import Main from '@/pages/indexmain'
 import Qrcode from '@/pages/qrcode'
+import Phonedraw from '@/pages/phonedraw'
 
 Vue.use(Router)
 
@@ -69,6 +70,11 @@ export default new Router({
           path: '/qrcode',
           component: Qrcode,
           name: 'qrcode'
+        },
+        {
+          path: '/phonedraw',
+          component: Phonedraw,
+          name: 'phonedraw'
         }
       ]
     }
