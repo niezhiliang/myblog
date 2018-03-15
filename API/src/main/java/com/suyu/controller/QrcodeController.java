@@ -36,7 +36,7 @@ public class QrcodeController {
     @Autowired
     private OssParams ossParams;
 
-    private static final String osspath = "http://huluwa-pdf.oss-cn-qingdao.aliyuncs.com/";
+    private static final String osspath = "http://suyublog.oss-cn-hangzhou.aliyuncs.com/";
 
     /**上传base64到oss**/
     @RequestMapping(value = "base64upload")

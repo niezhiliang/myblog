@@ -52,7 +52,7 @@
           this.identity = 'qrcode'+this.initidentity(10);
           vc.set('token-qrcode', this.identity, 1);
         }
-        let tempurl='http://127.0.0.1:8082/#/phonedraw?params='+this.identity
+        let tempurl='http://huluwa-test.oss-cn-hangzhou.aliyuncs.com/pdf/index.html#/phonedraw?params='+this.identity
         this.$set(this.config,'url',tempurl)
 
       },
@@ -63,7 +63,7 @@
           this.identity = 'qrcode'+this.initidentity(10);
           vc.set('token-qrcode', this.identity, 1);
         }
-        let url = "ws://127.0.0.1:8080/socketServer/"+this.identity
+        let url = "ws://www.niezhiliang.com:8080/socketServer/"+this.identity
         console.log(url)
         if ('WebSocket' in window){
           this.ws = new WebSocket(url);
