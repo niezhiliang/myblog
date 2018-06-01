@@ -1,9 +1,10 @@
 version: '2'
+
 services:
-  blog:
+  api:
     image: suyu/api:v1.0.0
-      restart: always
-      container_name: blog
-      hostname: blog
-      ports:
-        - "8080:8080"
+    restart: always
+    container_name: api
+    hostname: api
+    ports:
+      - "8080:8080"
