@@ -1,1 +1,11 @@
 
+version: '2'
+
+services:
+  blog:
+     image: suyu/api:v1.0.0
+        restart: always
+        container_name: blog
+        hostname: blog
+        ports:
+          - "8080:8080"
