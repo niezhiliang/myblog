@@ -1,4 +1,4 @@
-cd cd API
+cd API
 
 mvn clean package -DskipTests=true docker:build
 
